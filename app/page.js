@@ -23,7 +23,7 @@ export default function Home() {
           <p className='mb-4 text-center'>Contact Me</p>
           <div className="social-media flex flex-row justify-center gap-x-3.5 items-center">
 
-            <IconListItem icon={faFacebook} url={'https:://m.me/Pasindu.Oshadha'} />
+            <IconListItem icon={faFacebook} url={'https://m.me/Pasindu.Oshadha'} />
 
             <IconListItem icon={faLinkedin} url={'https://www.linkedin.com/in/pasindu7/'} />
 
