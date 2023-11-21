@@ -17,7 +17,7 @@ export default function Home() {
         className='w-52 sm:w-23 md:w-48 lg:w-40 rounded-full mb-4'
         src={dp} alt='Pasindu Oshadha'
         placeholder='blur'
-        loading='lazy'
+        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88x0AAtUB5fwEgi0AAAAASUVORK5CYII='
         />
         <h1 className='text-xl md:text-2xl font-light mb-4'>Hello  <span className='wave'>👋</span></h1>
         <h2 className="text-white text-3xl md:text-4xl font-regular mb-4 text-center">I am Pasindu Oshadha</h2>
