@@ -10,6 +10,14 @@ const dm_sans = DM_Sans({
 export const metadata = {
   title: 'Pasindu Oshadha',
   description: 'Web Developer 💻',
+  openGraph: {
+    title: 'Pasindu Oshadha - Web Developer',
+    description: 'Web Soulutoions Developer 💻',
+    url: 'http://pasinduoshadha.com',
+    siteName: 'Pasindu Oshadha',
+    locale: 'en_US',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({ children }) {
