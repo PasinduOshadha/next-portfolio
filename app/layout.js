@@ -8,6 +8,7 @@ const dm_sans = DM_Sans({
 })
 
 export const metadata = {
+  metadataBase: new URL('https://www.pasinduoshadha.com'),
   title: 'Pasindu Oshadha',
   description: 'Web Developer 💻',
   openGraph: {
