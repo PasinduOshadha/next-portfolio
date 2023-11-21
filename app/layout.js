@@ -17,7 +17,7 @@ export const metadata = {
     siteName: 'Pasindu Oshadha',
     images: [
       {
-        url: 'https://raw.githubusercontent.com/PasinduOshadha/next-portfolio/6d5a87d0c546ca0ad098b7d202cf2de64c6e7247/public/opengraph-image.jpeg',
+        url: 'https://www.pasinduoshadha.com/opengraph-image.jpeg',
         width: 1200,
         height: 630,
       }
