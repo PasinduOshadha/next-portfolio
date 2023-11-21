@@ -13,11 +13,16 @@ export default function Home() {
   return (
     <main className="flex flex-col min-h-screen items-center justify-center p-3 sm:p-0">
       <div className='fade-in-bottom card flex flex-col items-center w-100 md:w-50 lg:w-2/4 xl:w-2/5 bg-zinc-900 p-10 rounded-md transition-all duration-200 hover:bg-zinc-800'>
-        <Image className='w-52 sm:w-23 md:w-48 lg:w-40 rounded-full mb-4' src={dp} alt='' />
-        <h1 className='text-xl md:text-2xl font-bold mb-4'>Hello  <span className='wave'>👋</span></h1>
-        <h2 className="text-white text-3xl md:text-4xl font-bold mb-4 text-center">I am Pasindu Oshadha</h2>
+        <Image
+        className='w-52 sm:w-23 md:w-48 lg:w-40 rounded-full mb-4'
+        src={dp} alt='Pasindu Oshadha'
+        placeholder='blur'
+        loading='lazy'
+        />
+        <h1 className='text-xl md:text-2xl font-light mb-4'>Hello  <span className='wave'>👋</span></h1>
+        <h2 className="text-white text-3xl md:text-4xl font-regular mb-4 text-center">I am Pasindu Oshadha</h2>
         <div>
-          <p className='text-white text-center'>I am deeply interested in developing web applications with best ever user experience to make the internet more user friendly to everyone.</p>
+          <p className='text-white text-center font-light'>I am deeply interested in developing web applications with best ever user experience to make the internet more user friendly to everyone.</p>
         </div>
         <div className="contact-wrpper text-white mt-5">
           <p className='mb-4 text-center'>Contact Me</p>
