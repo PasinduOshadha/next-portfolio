@@ -17,7 +17,7 @@ export const metadata = {
     siteName: 'Pasindu Oshadha',
     images: [
       {
-        url: './images/opengraph-image.jpeg',
+        url: './opengraph-image.jpeg',
         width: 1200,
         height: 630,
       }
