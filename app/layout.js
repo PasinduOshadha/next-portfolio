@@ -10,21 +10,6 @@ const dm_sans = DM_Sans({
 export const metadata = {
   title: 'Pasindu Oshadha',
   description: 'Web Developer 💻',
-  // openGraph: {
-  //   title: 'Pasindu Oshadha - Web Developer',
-  //   description: 'Web Soulutoions Developer 💻',
-  //   url: 'http://pasinduoshadha.com',
-  //   siteName: 'Pasindu Oshadha',
-  //   images: [
-  //     {
-  //       url: 'https://www.pasinduoshadha.com/opengraph-image.jpeg',
-  //       width: 1200,
-  //       height: 630,
-  //     }
-  //   ],
-  //   locale: 'en_US',
-  //   type: 'website',
-  // },
 }
 
 export default function RootLayout({ children }) {
