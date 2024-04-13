@@ -1,7 +1,7 @@
 export const confettiData = {
     particleCount: 100,
     spread: 70,
-    origin: { y: 0.6 },
+    origin: { y: 0.3 },
 }
 
 export const particleData = {
