@@ -25,7 +25,7 @@ function page() {
                     </div>
                     <Image src={'/ny-assets/new-year-img.svg'} alt='New Year' width={500} height={500} className="w-full h-auto lg:w-[400px] mt-auto z-20" />
                     <Image src={'/ny-assets/mandala-art.png'} alt='New Year' width={300} height={300} className="w-full h-auto lg:w-[300px] mt-auto absolute top-20 lg:top-0 saturate-50 brightness-100 opacity-20" />
-                    <div className="absolute left-0 top-20 w-full h-4/5 z-50 bg-blue">
+                    <div className="absolute left-0 top-0 w-full h-full z-10 bg-blue">
                         <Confetti />
                     </div>
                 </div>
