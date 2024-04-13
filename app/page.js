@@ -11,7 +11,7 @@ import { faFacebook, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen items-center justify-center p-3 sm:p-0">
-      <div className='fade-in-bottom card flex flex-col items-center w-100 md:w-50 lg:w-2/4 xl:w-2/5 bg-zinc-900 p-10 rounded-md transition-all duration-200 hover:bg-zinc-800'>
+      <div className='fade-in-bottom card flex flex-col items-center w-100 md:w-50 lg:w-2/4 xl:w-2/5 bg-zinc-900 p-10 rounded-2xl transition-all duration-200 hover:bg-zinc-800'>
         <Image
         className='w-52 sm:w-23 md:w-48 lg:w-40 rounded-full mb-4'
         src={'/images/dp-pasindu-oshadha.jpeg'} alt='Pasindu Oshadha'
