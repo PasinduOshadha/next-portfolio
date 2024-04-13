@@ -1,9 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import dp from './images/dp-pasindu-oshadha.jpeg'
-import './styles/theme-styles.css'
+import '../styles/theme-styles.css'
 
-import IconListItem from '@components/IconListItem/IconListItem'
+import IconListItem from '../components/IconListItem/IconListItem'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
@@ -15,9 +14,10 @@ export default function Home() {
       <div className='fade-in-bottom card flex flex-col items-center w-100 md:w-50 lg:w-2/4 xl:w-2/5 bg-zinc-900 p-10 rounded-2xl transition-all duration-200 hover:bg-zinc-800'>
         <Image
         className='w-52 sm:w-23 md:w-48 lg:w-40 rounded-full mb-4'
-        src={dp} alt='Pasindu Oshadha'
-        placeholder='blur'
-        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88x0AAtUB5fwEgi0AAAAASUVORK5CYII='
+        src={'/images/dp-pasindu-oshadha.jpeg'} alt='Pasindu Oshadha'
+        loading='lazy'
+        width={300}
+        height={300}
         />
         <h1 className='text-xl md:text-2xl font-light mb-4'>Hello  <span className='wave'>👋</span></h1>
         <h2 className="text-white text-3xl md:text-4xl font-regular mb-4 text-center">I am Pasindu Oshadha</h2>
