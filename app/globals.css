@@ -1,59 +1,93 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@theme {
+  /* ── Surface palette ── */
+  --color-surface:                   #131313;
+  --color-surface-dim:               #131313;
+  --color-surface-bright:            #393939;
+  --color-surface-container-lowest:  #0e0e0e;
+  --color-surface-container-low:     #1b1b1b;
+  --color-surface-container:         #1f1f1f;
+  --color-surface-container-high:    #2a2a2a;
+  --color-surface-container-highest: #353535;
+  --color-surface-variant:           #353535;
+  --color-surface-tint:              #aec6ff;
+  --color-on-surface:                #e2e2e2;
+  --color-on-surface-variant:        #c1c6d7;
+  --color-background:                #131313;
+  --color-on-background:             #e2e2e2;
+
+  /* ── Primary ── */
+  --color-primary:                   #aec6ff;
+  --color-primary-container:         #0070f3;
+  --color-primary-fixed:             #d8e2ff;
+  --color-primary-fixed-dim:         #aec6ff;
+  --color-on-primary:                #002e6b;
+  --color-on-primary-container:      #ffffff;
+  --color-on-primary-fixed:          #001a43;
+  --color-on-primary-fixed-variant:  #004397;
+  --color-inverse-primary:           #0059c5;
+
+  /* ── Secondary ── */
+  --color-secondary:                 #dbb8ff;
+  --color-secondary-container:       #6807ba;
+  --color-secondary-fixed:           #efdbff;
+  --color-secondary-fixed-dim:       #dbb8ff;
+  --color-on-secondary:              #470083;
+  --color-on-secondary-container:    #d0a6ff;
+  --color-on-secondary-fixed:        #2b0052;
+  --color-on-secondary-fixed-variant:#6600b7;
+
+  /* ── Tertiary ── */
+  --color-tertiary:                  #ffb596;
+  --color-tertiary-container:        #ca4e00;
+  --color-tertiary-fixed:            #ffdbcd;
+  --color-tertiary-fixed-dim:        #ffb596;
+  --color-on-tertiary:               #581e00;
+  --color-on-tertiary-container:     #fffeff;
+  --color-on-tertiary-fixed:         #360f00;
+  --color-on-tertiary-fixed-variant: #7d2d00;
+
+  /* ── Outline ── */
+  --color-outline:                   #8b90a0;
+  --color-outline-variant:           #414754;
+  --color-inverse-surface:           #e2e2e2;
+  --color-inverse-on-surface:        #303030;
+
+  /* ── Error ── */
+  --color-error:                     #ffb4ab;
+  --color-error-container:           #93000a;
+  --color-on-error:                  #690005;
+  --color-on-error-container:        #ffdad6;
+
+  /* ── Typography ── */
+  --font-headline: var(--font-manrope), Manrope, sans-serif;
+  --font-body:     var(--font-inter), Inter, sans-serif;
+  --font-mono:     var(--font-jetbrains), "JetBrains Mono", monospace;
+
+  /* ── Border radius ── */
+  --radius-lg:  0.5rem;
+  --radius-xl:  0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 2rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  body {
+    background-color: #131313;
+    color: #e2e2e2;
+    font-family: var(--font-inter), Inter, sans-serif;
+    overflow-x: hidden;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-
-.fade-in-bottom {
-	-webkit-animation: fade-in-bottom 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	        animation: fade-in-bottom 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-}
-
-
- @-webkit-keyframes fade-in-bottom {
-  0% {
-    -webkit-transform: translateY(50px);
-            transform: translateY(50px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-    opacity: 1;
-  }
-}
-@keyframes fade-in-bottom {
-  0% {
-    -webkit-transform: translateY(50px);
-            transform: translateY(50px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-    opacity: 1;
+@layer components {
+  .glass-card {
+    backdrop-filter: blur(20px);
+    background: rgba(42, 42, 42, 0.6);
   }
 }
