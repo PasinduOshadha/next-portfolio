@@ -2,8 +2,14 @@ import Link from 'next/link'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import CaseStudiesGrid from './CaseStudiesGrid'
+import { client } from '../../sanity/lib/client'
+import { CASE_STUDIES_QUERY } from '../../sanity/lib/queries'
 
-export default function CaseStudiesPage() {
+export const revalidate = 60
+
+export default async function CaseStudiesPage() {
+  const caseStudies = await client.fetch(CASE_STUDIES_QUERY)
+
   return (
     <>
       <Nav />
@@ -13,6 +19,9 @@ export default function CaseStudiesPage() {
         <section className="relative py-32 px-12 max-w-[1440px] mx-auto pt-40">
           <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary-container/10 rounded-full blur-[120px] pointer-events-none" />
           <div className="relative z-10">
+            <span className="font-mono text-secondary text-sm tracking-widest uppercase mb-4 block">
+              Client Work
+            </span>
             <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter leading-[0.9] mb-8 font-headline text-on-surface">
               Engineered Experiences.
             </h1>
@@ -23,7 +32,7 @@ export default function CaseStudiesPage() {
         </section>
 
         {/* ── Filter + Grid (client component) ── */}
-        <CaseStudiesGrid />
+        <CaseStudiesGrid caseStudies={caseStudies} />
 
         {/* ── CTA ── */}
         <section className="py-32 px-12">

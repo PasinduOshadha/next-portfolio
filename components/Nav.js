@@ -44,24 +44,6 @@ export default function Nav() {
         </div>
       </nav>
 
-      <div className="fixed right-0 top-1/2 -translate-y-1/2 rounded-l-xl bg-surface-container-high flex flex-col gap-4 p-3 z-40 shadow-[0px_40px_60px_rgba(226,226,226,0.08)]">
-        <div className="flex flex-col items-center gap-1 mb-2">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-secondary">System Metrics</span>
-          <span className="text-[8px] font-mono text-on-surface/60">Vitals: Stable</span>
-        </div>
-        <button className="flex flex-col items-center gap-1 p-2 text-primary bg-surface rounded-lg transition-all">
-          <span className="material-symbols-outlined text-sm">speed</span>
-          <span className="font-mono text-[10px] uppercase tracking-widest">Performance</span>
-        </button>
-        <button className="flex flex-col items-center gap-1 p-2 text-on-surface/60 hover:bg-surface transition-all rounded-lg">
-          <span className="material-symbols-outlined text-sm">mail</span>
-          <span className="font-mono text-[10px] uppercase tracking-widest">Contact</span>
-        </button>
-        <button className="flex flex-col items-center gap-1 p-2 text-on-surface/60 hover:bg-surface transition-all rounded-lg">
-          <span className="material-symbols-outlined text-sm">bolt</span>
-          <span className="font-mono text-[10px] uppercase tracking-widest">Status</span>
-        </button>
-      </div>
     </>
   )
 }

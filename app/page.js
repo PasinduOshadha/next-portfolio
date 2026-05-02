@@ -1,6 +1,80 @@
+'use client'
 import Link from 'next/link'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import { SiWordpress, SiNextdotjs, SiGraphql, SiGoogleanalytics, SiPhp, SiWoocommerce } from 'react-icons/si'
+
+const LOGO_DEV_TOKEN = 'pk_QKUwWgUrRJaFB1Xp1hUjJg'
+
+const expertiseCards = [
+  {
+    Icon: SiWordpress,
+    iconColor: '#21759B',
+    iconBg: 'rgba(33,117,155,0.12)',
+    borderColor: 'rgba(33,117,155,0.4)',
+    glowColor: 'rgba(33,117,155,0.15)',
+    title: 'WordPress Architecture',
+    desc: 'Designing scalable WordPress architectures using custom post types, taxonomies, and optimized database structures to support high-traffic, content-heavy applications efficiently.',
+  },
+  {
+    Icon: SiPhp,
+    iconColor: '#777BB4',
+    iconBg: 'rgba(119,123,180,0.12)',
+    borderColor: 'rgba(119,123,180,0.4)',
+    glowColor: 'rgba(119,123,180,0.15)',
+    title: 'Custom Plugin & Theme Development',
+    desc: 'Building custom plugins and themes tailored to business requirements, ensuring clean code, flexibility, and seamless integration with existing WordPress ecosystems.',
+  },
+  {
+    Icon: SiNextdotjs,
+    iconColor: '#e2e2e2',
+    iconBg: 'rgba(226,226,226,0.08)',
+    borderColor: 'rgba(226,226,226,0.25)',
+    glowColor: 'rgba(226,226,226,0.08)',
+    title: 'Headless WordPress (Next.js)',
+    desc: 'Implementing headless WordPress solutions using Next.js for modern frontend experiences, improved performance, and scalable architecture with API-driven content delivery.',
+  },
+  {
+    Icon: SiGoogleanalytics,
+    iconColor: '#F9AB00',
+    iconBg: 'rgba(249,171,0,0.12)',
+    borderColor: 'rgba(249,171,0,0.4)',
+    glowColor: 'rgba(249,171,0,0.15)',
+    title: 'SEO & Performance Optimization',
+    desc: 'Optimizing websites for Core Web Vitals, faster load times, and technical SEO by improving server response, caching strategies, and frontend performance.',
+  },
+  {
+    Icon: SiGraphql,
+    iconColor: '#E10098',
+    iconBg: 'rgba(225,0,152,0.12)',
+    borderColor: 'rgba(225,0,152,0.4)',
+    glowColor: 'rgba(225,0,152,0.15)',
+    title: 'API Integrations',
+    desc: 'Developing and integrating REST and GraphQL APIs to connect third-party services, automate workflows, and enable seamless data exchange across platforms.',
+  },
+  {
+    Icon: SiWoocommerce,
+    iconColor: '#96588A',
+    iconBg: 'rgba(150,88,138,0.12)',
+    borderColor: 'rgba(150,88,138,0.4)',
+    glowColor: 'rgba(150,88,138,0.15)',
+    title: 'WooCommerce Customization',
+    desc: 'Customizing WooCommerce with advanced business logic, dynamic pricing, and tailored checkout flows to meet complex eCommerce requirements and improve conversions.',
+  },
+]
+
+const techs = [
+  { domain: 'wordpress.org',        label: 'WordPress' },
+  { domain: 'nextjs.org',           label: 'Next.js' },
+  { domain: 'react.dev',            label: 'React' },
+  { domain: 'mysql.com',            label: 'MySQL' },
+  { domain: 'graphql.org',          label: 'GraphQL' },
+  { domain: 'nodejs.org',           label: 'Node.js' },
+  { domain: 'postgresql.org',       label: 'PostgreSQL' },
+  { domain: 'analytics.google.com', label: 'Analytics' },
+  { domain: 'cloudflare.com',       label: 'Cloudflare' },
+  { domain: 'docker.com',           label: 'Docker' },
+]
 
 export default function Home() {
   return (
@@ -19,9 +93,9 @@ export default function Home() {
               Senior WordPress &amp; Next.js Developer
             </span>
             <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter leading-[0.9] mb-8 font-headline text-on-surface">
-              Performance-focused.<br />
-              <span className="text-primary">SEO-driven.</span><br />
-              Scalable solutions.
+              <span className="bg-[linear-gradient(to_left,#29EAC4,#4284DB)] bg-clip-text text-transparent">Performance</span>-focused.<br />
+              <span className="bg-[linear-gradient(to_left,#29EAC4,#4284DB)] bg-clip-text text-transparent">SEO</span>-driven.<br />
+              <span className="bg-[linear-gradient(to_left,#29EAC4,#4284DB)] bg-clip-text text-transparent">Scalable</span> solutions.
             </h1>
             <p className="text-xl md:text-2xl text-on-surface-variant max-w-2xl mb-12 leading-relaxed text-center">
               9+ years of engineering experience, specializing in high-end WordPress architecture
@@ -30,7 +104,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-6 justify-center">
               <Link
                 href="/case-studies"
-                className="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-8 py-4 rounded-lg text-lg font-bold hover:scale-105 transition-transform duration-200"
+                className="bg-[linear-gradient(to_left,#ff6a00,#ee0979)] text-white px-8 py-4 rounded-lg text-lg font-bold hover:scale-105 transition-transform duration-200"
               >
                 View Case Studies
               </Link>
@@ -45,65 +119,106 @@ export default function Home() {
         </section>
 
         {/* ── Tech Stack Strip ── */}
-        <section className="bg-surface-container-lowest py-12 border-y border-outline-variant/10">
-          <div className="max-w-[1440px] mx-auto px-12 flex flex-wrap justify-between items-center gap-8 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700">
-            {['WordPress', 'Next.js', 'React', 'MySQL', 'GraphQL', 'Node.js'].map((tech) => (
-              <span key={tech} className="font-headline font-bold text-2xl">{tech}</span>
+        <section className="bg-surface-container-lowest py-12 border-y border-outline-variant/10 overflow-hidden">
+          <div className="animate-marquee flex items-center gap-16 w-max opacity-40 hover:opacity-100 transition-opacity duration-700">
+            {[...techs, ...techs].map(({ domain, label }, i) => (
+              <div key={i} className="flex items-center gap-3 text-on-surface shrink-0">
+                <img
+                  src={`https://img.logo.dev/${domain}?token=${LOGO_DEV_TOKEN}&size=40&format=png`}
+                  alt={label}
+                  width={32}
+                  height={32}
+                  className="w-8 h-8 shrink-0 object-contain rounded-lg grayscale"
+                />
+                <span className="font-headline font-normal text-xl">{label}</span>
+              </div>
             ))}
           </div>
         </section>
 
         {/* ── Expertise Grid ── */}
-        <section className="py-32 px-12 max-w-[1440px] mx-auto">
-          <div className="mb-20">
-            <h2 className="text-4xl md:text-5xl font-extrabold font-headline tracking-tight mb-4">
-              Architectural Expertise
-            </h2>
-            <p className="text-on-surface-variant text-lg max-w-xl">
-              Engineering high-throughput applications with a focus on modern web standards.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { icon: 'architecture', title: 'WordPress Architecture', desc: 'Scaling multi-site environments and complex data schemas for enterprise-grade performance.' },
-              { icon: 'layers', title: 'Headless CMS', desc: 'Decoupling content management from presentation using Next.js, Apollo, and GraphQL APIs.' },
-              { icon: 'speed', title: 'Performance & SEO', desc: 'Optimizing Core Web Vitals to achieve perfect 100/100 Lighthouse scores and technical visibility.' },
-              { icon: 'settings_input_component', title: 'Plugin & API Dev', desc: 'Custom middleware and backend extensions to integrate WordPress into modern microservices.' },
-            ].map((item) => (
-              <div key={item.title} className="bg-surface-container-low p-8 rounded-xl hover:bg-surface-container-high transition-colors">
-                <span className="material-symbols-outlined text-primary text-4xl mb-6 block">{item.icon}</span>
-                <h3 className="text-xl font-bold font-headline mb-3">{item.title}</h3>
-                <p className="text-on-surface-variant text-sm leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
+        <section className="py-32 px-12 bg-white" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 65%, rgba(255,255,255,1) 100%), url(/dot-pattern.svg)', backgroundSize: 'auto, 60px 60px', backgroundRepeat: 'no-repeat, repeat' }}>
+          <div className="max-w-[1440px] mx-auto relative z-10">
+            <div className="mb-20">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-[#4284DB] mb-4 block">Core Capabilities</span>
+              <h2 className="text-4xl md:text-5xl font-extrabold font-headline tracking-tight mb-4 text-[#131313]">
+                Architectural <span className="bg-[linear-gradient(to_left,#29EAC4,#4284DB)] bg-clip-text text-transparent">Expertise</span>
+              </h2>
+              <p className="text-[#414754] text-lg max-w-xl">
+                Engineering high-throughput applications with a focus on modern web standards.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {expertiseCards.map(({ Icon, iconColor, iconBg, borderColor, glowColor, title, desc }) => (
+                <div
+                  key={title}
+                  className="group relative bg-[#f5f5f5] p-8 rounded-xl transition-all duration-300 hover:-translate-y-2 cursor-default overflow-hidden"
+                  style={{ border: '1px solid transparent' }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.border = `1px solid ${borderColor}`
+                    e.currentTarget.style.boxShadow = `0 20px 40px ${glowColor}`
+                    e.currentTarget.style.background = '#ffffff'
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.border = '1px solid transparent'
+                    e.currentTarget.style.boxShadow = 'none'
+                    e.currentTarget.style.background = '#f5f5f5'
+                  }}
+                >
+                  {/* Glow orb behind icon */}
+                  <div
+                    className="absolute -top-6 -left-6 w-24 h-24 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                    style={{ background: glowColor }}
+                  />
+                  {/* Icon */}
+                  <div
+                    className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
+                    style={{ background: iconBg }}
+                  >
+                    <Icon style={{ color: iconColor }} className="text-2xl" />
+                  </div>
+                  <h3 className="text-xl font-bold font-headline mb-3 text-[#131313]">{title}</h3>
+                  <p className="text-[#555] text-sm leading-relaxed">{desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* ── About Me ── */}
-        <section className="py-32 px-12 max-w-[1440px] mx-auto border-t border-outline-variant/10">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
-            <div className="md:col-span-5 relative group">
-              <div className="aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-high relative shadow-2xl">
-                <img
-                  className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
-                  src="/images/dp-pasindu-oshadha.jpeg"
-                  alt="Pasindu Oshadha — Senior Developer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-surface/60 via-transparent to-transparent" />
+        <section className="py-32 px-12 bg-white">
+          <div className="max-w-[1440px] mx-auto">
+          <div className="flex flex-col gap-12">
+            {/* Top row: image + title */}
+            <div className="flex flex-col md:flex-row gap-16 items-center">
+              <div className="flex items-center justify-start shrink-0">
+                <div className="relative group w-40 h-40 md:w-48 md:h-48 shrink-0">
+                  <div className="w-full h-full rounded-full overflow-hidden bg-[#e5e7eb] shadow-2xl ring-1 ring-[#d1d5db]">
+                    <img
+                      className="w-full h-full object-cover transition-all duration-700"
+                      src="/images/dp-pasindu-oshadha.jpeg"
+                      alt="Pasindu Oshadha — Senior Developer"
+                    />
+                  </div>
+                  <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-primary/10 rounded-full blur-2xl -z-10 group-hover:bg-primary/20 transition-colors" />
+                </div>
               </div>
-              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-primary/10 rounded-full blur-2xl -z-10 group-hover:bg-primary/20 transition-colors" />
+
+              <div className="flex-1">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container/20 border border-secondary/20 mb-8">
+                  <span className="w-2 h-2 rounded-full bg-secondary inline-block" />
+                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-secondary">Engineer Profile</span>
+                </div>
+                <h2 className="text-5xl md:text-6xl font-extrabold font-headline tracking-tighter leading-tight text-[#131313]">
+                  9+ Years of <br />
+                  <span className="bg-[linear-gradient(to_left,#29EAC4,#4284DB)] bg-clip-text text-transparent">Engineering Rigor.</span>
+                </h2>
+              </div>
             </div>
 
-            <div className="md:col-span-7">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container/20 border border-secondary/20 mb-8">
-                <span className="w-2 h-2 rounded-full bg-secondary inline-block" />
-                <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-secondary">Engineer Profile</span>
-              </div>
-              <h2 className="text-5xl md:text-6xl font-extrabold font-headline tracking-tighter text-on-surface mb-8 leading-tight">
-                9+ Years of <br />
-                <span className="text-primary">Engineering Rigor.</span>
-              </h2>
-              <div className="space-y-6 text-lg text-on-surface-variant max-w-xl leading-relaxed mb-10">
+            {/* Bottom: full-width body text + link */}
+            <div>
+              <div className="space-y-6 text-lg text-[#555] leading-relaxed mb-10">
                 <p>
                   With nearly a decade of experience, I specialize in bridging the gap between enterprise
                   WordPress architecture and modern headless Next.js ecosystems. My focus is on delivering
@@ -116,20 +231,22 @@ export default function Home() {
                   optimizing Core Web Vitals, I prioritize performance and long-term maintainability.
                 </p>
               </div>
-              <Link href="/about" className="inline-flex items-center gap-3 text-primary font-bold text-lg group">
+              <Link href="/about" className="inline-flex items-center gap-3 text-[#4284DB] font-bold text-lg group">
                 Read My Story
                 <span className="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
               </Link>
             </div>
           </div>
+          </div>
         </section>
+
 
         {/* ── Case Studies ── */}
         <section className="py-32 bg-surface-container-low/30 px-12">
           <div className="max-w-[1440px] mx-auto">
             <div className="flex justify-between items-end mb-20">
               <div>
-                <h2 className="text-4xl md:text-5xl font-extrabold font-headline tracking-tight mb-4">
+                <h2 className="text-4xl md:text-5xl font-extrabold font-headline tracking-tight mb-4 text-on-surface">
                   Selected Case Studies
                 </h2>
                 <p className="text-on-surface-variant text-lg">Proven results across Fintech, E-commerce, and Media.</p>
@@ -204,7 +321,7 @@ export default function Home() {
         <section className="py-32 px-12 max-w-[1440px] mx-auto overflow-hidden">
           <div className="flex flex-col md:flex-row gap-24 items-start">
             <div className="w-full md:w-1/3">
-              <h2 className="text-4xl font-extrabold font-headline tracking-tight mb-8">What Partners Say</h2>
+              <h2 className="text-4xl font-extrabold font-headline tracking-tight mb-8 text-on-surface">What Partners Say</h2>
               <p className="text-on-surface-variant text-lg leading-relaxed">
                 Collaborating with global agencies and engineering teams to deliver world-class digital experiences.
               </p>
@@ -246,8 +363,8 @@ export default function Home() {
         <section className="py-32 px-12">
           <div className="max-w-[1440px] mx-auto bg-gradient-to-br from-surface-container-high to-surface rounded-3xl p-12 md:p-24 text-center border border-outline-variant/10 relative overflow-hidden">
             <div className="absolute -bottom-24 -right-24 w-[400px] h-[400px] bg-secondary-container/10 rounded-full blur-[100px] pointer-events-none" />
-            <h2 className="text-5xl md:text-7xl font-extrabold font-headline tracking-tighter mb-8 leading-[1]">
-              Ready to scale your<br />digital architecture?
+            <h2 className="text-5xl md:text-7xl font-extrabold font-headline tracking-tighter mb-8 leading-[1] text-on-surface">
+              Ready to scale your<br /><span className="bg-[linear-gradient(to_left,#29EAC4,#4284DB)] bg-clip-text text-transparent">digital architecture?</span>
             </h2>
             <p className="text-xl text-on-surface-variant max-w-2xl mx-auto mb-12">
               Currently accepting select projects for Q3 and Q4. Let&apos;s build something that performs as well as it looks.
@@ -255,7 +372,7 @@ export default function Home() {
             <div className="flex flex-col md:flex-row justify-center gap-6">
               <Link
                 href="/contact"
-                className="bg-primary text-on-primary-fixed px-10 py-5 rounded-lg text-xl font-bold hover:bg-primary-fixed-dim transition-colors"
+                className="bg-[linear-gradient(to_left,#ff6a00,#ee0979)] text-white px-10 py-5 rounded-lg text-xl font-bold hover:scale-105 transition-transform duration-200"
               >
                 Start a Project
               </Link>
