@@ -25,6 +25,9 @@ export default defineConfig({
             S.listItem()
               .title('Blog Posts')
               .child(S.documentTypeList('post').title('Blog Posts')),
+            S.listItem()
+              .title('Testimonials')
+              .child(S.documentTypeList('testimonial').title('Testimonials')),
           ]),
     }),
     visionTool(),
