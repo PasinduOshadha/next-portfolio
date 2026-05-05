@@ -51,7 +51,7 @@ export default async function BlogPage() {
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2">
                     <div className="aspect-video md:aspect-auto overflow-hidden relative min-h-[300px]">
-                      {featured.mainImage ? (
+                      {featured.mainImage?.asset ? (
                         <Image
                           src={urlFor(featured.mainImage).width(800).height(600).url()}
                           alt={featured.mainImage.alt || featured.title}
@@ -106,7 +106,7 @@ export default async function BlogPage() {
                       className="group bg-surface-container-high rounded-xl overflow-hidden flex flex-col hover:bg-surface-container-highest transition-colors duration-200"
                     >
                       <div className="aspect-video overflow-hidden bg-surface-container-lowest relative">
-                        {post.mainImage ? (
+                        {post.mainImage?.asset ? (
                           <Image
                             src={urlFor(post.mainImage).width(600).height(338).url()}
                             alt={post.mainImage.alt || post.title}

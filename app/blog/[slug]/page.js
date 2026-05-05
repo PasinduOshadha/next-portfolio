@@ -27,7 +27,7 @@ export async function generateMetadata({ params }) {
 
 const ptComponents = {
   types: {
-    image: ({ value }) => (
+    image: ({ value }) => value?.asset ? (
       <figure className="my-10 rounded-xl overflow-hidden">
         <Image
           src={urlFor(value).width(1200).url()}
@@ -42,7 +42,7 @@ const ptComponents = {
           </figcaption>
         )}
       </figure>
-    ),
+    ) : null,
     code: ({ value }) => (
       <div className="my-8 bg-surface-container-lowest rounded-xl overflow-hidden">
         <div className="flex items-center gap-2 px-6 py-3 border-b border-outline-variant/10">
@@ -160,7 +160,7 @@ export default async function BlogPostPage({ params }) {
         </section>
 
         {/* ── Cover Image ── */}
-        {post.mainImage && (
+        {post.mainImage?.asset && (
           <section className="px-12 max-w-[1440px] mx-auto mb-16">
             <div className="rounded-2xl overflow-hidden aspect-video relative">
               <Image
