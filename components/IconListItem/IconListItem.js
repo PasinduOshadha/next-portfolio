@@ -1,16 +1,13 @@
 import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { DynamicIcon } from 'lucide-react/dynamic'
 
 
 function IconListItem(props) {
-
     const {icon, url} = props;
 
   return (
-    <Link href={url} target='_blank'>
-        <FontAwesomeIcon icon={icon} height={'25px'} width={'25px'} />
-       
+    <Link href={url} target='_blank' rel='noopener noreferrer'>
+        <DynamicIcon name={icon} />
     </Link>
   )
 }
