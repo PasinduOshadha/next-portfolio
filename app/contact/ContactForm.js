@@ -3,20 +3,28 @@
 import { useState } from 'react'
 
 export default function ContactForm() {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    projectType: '',
-    budget: '',
-    brief: '',
-  })
+  const [form, setForm] = useState({ name: '', email: '', projectType: '', budget: '', brief: '' })
+  const [status, setStatus] = useState('idle') // idle | loading | success | error
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setStatus('loading')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error()
+      setStatus('success')
+      setForm({ name: '', email: '', projectType: '', budget: '', brief: '' })
+    } catch {
+      setStatus('error')
+    }
   }
 
   const inputClass =
@@ -95,11 +103,23 @@ export default function ContactForm() {
         />
       </div>
 
+      {status === 'success' && (
+        <p className="text-sm font-mono text-primary bg-primary/10 px-4 py-3 rounded-lg">
+          Message sent. I'll be in touch shortly.
+        </p>
+      )}
+      {status === 'error' && (
+        <p className="text-sm font-mono text-error bg-error/10 px-4 py-3 rounded-lg">
+          Something went wrong. Please try again or email directly.
+        </p>
+      )}
+
       <button
         type="submit"
-        className="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary-container py-4 rounded-lg text-lg font-bold hover:scale-105 transition-transform duration-200"
+        disabled={status === 'loading'}
+        className="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary-container py-4 rounded-lg text-lg font-bold hover:scale-105 transition-transform duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
       >
-        Initialize Inquiry
+        {status === 'loading' ? 'Sending...' : 'Initialize Inquiry'}
       </button>
     </form>
   )

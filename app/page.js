@@ -125,7 +125,7 @@ export default async function Home() {
               <div className="flex-1">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container/20 border border-secondary/20 mb-8">
                   <span className="w-2 h-2 rounded-full bg-secondary inline-block" />
-                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-secondary">Engineer Profile</span>
+                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-on-surface">Engineer Profile</span>
                 </div>
                 <h2 className="text-5xl md:text-6xl font-extrabold font-headline tracking-tighter leading-tight text-[#131313]">
                   9+ Years of <br />

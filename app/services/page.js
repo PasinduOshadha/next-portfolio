@@ -168,7 +168,7 @@ export default function ServicesPage() {
         </section>
 
         {/* ── Pricing Tiers ── */}
-        <section className="py-32 px-12 max-w-[1440px] mx-auto border-t border-outline-variant/10">
+        {false && <section className="py-32 px-12 max-w-[1440px] mx-auto border-t border-outline-variant/10">
           <h2 className="text-4xl md:text-5xl font-extrabold font-headline tracking-tight mb-4 text-center">
             Engagement Models
           </h2>
@@ -221,7 +221,7 @@ export default function ServicesPage() {
               </div>
             ))}
           </div>
-        </section>
+        </section>}
 
         {/* ── CTA ── */}
         <section className="py-32 px-12">
