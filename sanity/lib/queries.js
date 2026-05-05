@@ -43,6 +43,19 @@ export const CASE_STUDY_SLUGS_QUERY = `
 
 // ── Projects ──────────────────────────────────────────────────────────────────
 
+export const HOME_PROJECTS_QUERY = `
+  *[_type == "project" && projectType == "website"] | order(order asc, publishedAt desc) [0...3] {
+    _id,
+    title,
+    "slug": slug.current,
+    description,
+    mainImage,
+    category,
+    tags,
+    liveUrl
+  }
+`
+
 export const PROJECTS_QUERY = `
   *[_type == "project"] | order(order asc, publishedAt desc) {
     _id,
@@ -80,6 +93,20 @@ export const PROJECT_QUERY = `
 export const PROJECT_SLUGS_QUERY = `
   *[_type == "project" && defined(slug.current)] {
     "slug": slug.current
+  }
+`
+
+// ── Testimonials ──────────────────────────────────────────────────────────────
+
+export const TESTIMONIALS_QUERY = `
+  *[_type == "testimonial"] | order(order asc) {
+    _id,
+    clientName,
+    designation,
+    serviceProvided,
+    testimonial,
+    avatar,
+    featured
   }
 `
 

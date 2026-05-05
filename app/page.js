@@ -1,67 +1,13 @@
-'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-import { SiWordpress, SiNextdotjs, SiGraphql, SiGoogleanalytics, SiPhp, SiWoocommerce } from 'react-icons/si'
+import ExpertiseGrid from '../components/ExpertiseGrid'
+import { client } from '../sanity/lib/client'
+import { HOME_PROJECTS_QUERY, TESTIMONIALS_QUERY } from '../sanity/lib/queries'
+import { urlFor } from '../sanity/lib/image'
 
 const LOGO_DEV_TOKEN = 'pk_QKUwWgUrRJaFB1Xp1hUjJg'
-
-const expertiseCards = [
-  {
-    Icon: SiWordpress,
-    iconColor: '#21759B',
-    iconBg: 'rgba(33,117,155,0.12)',
-    borderColor: 'rgba(33,117,155,0.4)',
-    glowColor: 'rgba(33,117,155,0.15)',
-    title: 'WordPress Architecture',
-    desc: 'Designing scalable WordPress architectures using custom post types, taxonomies, and optimized database structures to support high-traffic, content-heavy applications efficiently.',
-  },
-  {
-    Icon: SiPhp,
-    iconColor: '#777BB4',
-    iconBg: 'rgba(119,123,180,0.12)',
-    borderColor: 'rgba(119,123,180,0.4)',
-    glowColor: 'rgba(119,123,180,0.15)',
-    title: 'Custom Plugin & Theme Development',
-    desc: 'Building custom plugins and themes tailored to business requirements, ensuring clean code, flexibility, and seamless integration with existing WordPress ecosystems.',
-  },
-  {
-    Icon: SiNextdotjs,
-    iconColor: '#e2e2e2',
-    iconBg: 'rgba(226,226,226,0.08)',
-    borderColor: 'rgba(226,226,226,0.25)',
-    glowColor: 'rgba(226,226,226,0.08)',
-    title: 'Headless WordPress (Next.js)',
-    desc: 'Implementing headless WordPress solutions using Next.js for modern frontend experiences, improved performance, and scalable architecture with API-driven content delivery.',
-  },
-  {
-    Icon: SiGoogleanalytics,
-    iconColor: '#F9AB00',
-    iconBg: 'rgba(249,171,0,0.12)',
-    borderColor: 'rgba(249,171,0,0.4)',
-    glowColor: 'rgba(249,171,0,0.15)',
-    title: 'SEO & Performance Optimization',
-    desc: 'Optimizing websites for Core Web Vitals, faster load times, and technical SEO by improving server response, caching strategies, and frontend performance.',
-  },
-  {
-    Icon: SiGraphql,
-    iconColor: '#E10098',
-    iconBg: 'rgba(225,0,152,0.12)',
-    borderColor: 'rgba(225,0,152,0.4)',
-    glowColor: 'rgba(225,0,152,0.15)',
-    title: 'API Integrations',
-    desc: 'Developing and integrating REST and GraphQL APIs to connect third-party services, automate workflows, and enable seamless data exchange across platforms.',
-  },
-  {
-    Icon: SiWoocommerce,
-    iconColor: '#96588A',
-    iconBg: 'rgba(150,88,138,0.12)',
-    borderColor: 'rgba(150,88,138,0.4)',
-    glowColor: 'rgba(150,88,138,0.15)',
-    title: 'WooCommerce Customization',
-    desc: 'Customizing WooCommerce with advanced business logic, dynamic pricing, and tailored checkout flows to meet complex eCommerce requirements and improve conversions.',
-  },
-]
 
 const techs = [
   { domain: 'wordpress.org',        label: 'WordPress' },
@@ -76,7 +22,14 @@ const techs = [
   { domain: 'docker.com',           label: 'Docker' },
 ]
 
-export default function Home() {
+export const revalidate = 60
+
+export default async function Home() {
+  const [projects, testimonials] = await Promise.all([
+    client.fetch(HOME_PROJECTS_QUERY),
+    client.fetch(TESTIMONIALS_QUERY),
+  ])
+
   return (
     <>
       <Nav />
@@ -85,7 +38,6 @@ export default function Home() {
 
         {/* ── Hero ── */}
         <section className="relative min-h-screen flex flex-col justify-center px-12 pt-24 max-w-[1440px] mx-auto overflow-hidden">
-          {/* Blur orb */}
           <div className="absolute -top-24 w-[600px] h-[600px] bg-primary-container/10 rounded-full blur-[120px] pointer-events-none left-1/2 -translate-x-1/2" />
 
           <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
@@ -148,40 +100,7 @@ export default function Home() {
                 Engineering high-throughput applications with a focus on modern web standards.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {expertiseCards.map(({ Icon, iconColor, iconBg, borderColor, glowColor, title, desc }) => (
-                <div
-                  key={title}
-                  className="group relative bg-[#f5f5f5] p-8 rounded-xl transition-all duration-300 hover:-translate-y-2 cursor-default overflow-hidden"
-                  style={{ border: '1px solid transparent' }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.border = `1px solid ${borderColor}`
-                    e.currentTarget.style.boxShadow = `0 20px 40px ${glowColor}`
-                    e.currentTarget.style.background = '#ffffff'
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.border = '1px solid transparent'
-                    e.currentTarget.style.boxShadow = 'none'
-                    e.currentTarget.style.background = '#f5f5f5'
-                  }}
-                >
-                  {/* Glow orb behind icon */}
-                  <div
-                    className="absolute -top-6 -left-6 w-24 h-24 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                    style={{ background: glowColor }}
-                  />
-                  {/* Icon */}
-                  <div
-                    className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
-                    style={{ background: iconBg }}
-                  >
-                    <Icon style={{ color: iconColor }} className="text-2xl" />
-                  </div>
-                  <h3 className="text-xl font-bold font-headline mb-3 text-[#131313]">{title}</h3>
-                  <p className="text-[#555] text-sm leading-relaxed">{desc}</p>
-                </div>
-              ))}
-            </div>
+            <ExpertiseGrid />
           </div>
         </section>
 
@@ -189,7 +108,6 @@ export default function Home() {
         <section className="py-32 px-12 bg-white">
           <div className="max-w-[1440px] mx-auto">
           <div className="flex flex-col gap-12">
-            {/* Top row: image + title */}
             <div className="flex flex-col md:flex-row gap-16 items-center">
               <div className="flex items-center justify-start shrink-0">
                 <div className="relative group w-40 h-40 md:w-48 md:h-48 shrink-0">
@@ -216,7 +134,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Bottom: full-width body text + link */}
             <div>
               <div className="space-y-6 text-lg text-[#555] leading-relaxed mb-10">
                 <p>
@@ -240,124 +157,115 @@ export default function Home() {
           </div>
         </section>
 
-
-        {/* ── Case Studies ── */}
+        {/* ── Selected Projects ── */}
         <section className="py-32 bg-surface-container-low/30 px-12">
           <div className="max-w-[1440px] mx-auto">
             <div className="flex justify-between items-end mb-20">
               <div>
                 <h2 className="text-4xl md:text-5xl font-extrabold font-headline tracking-tight mb-4 text-on-surface">
-                  Selected Case Studies
+                  Selected Projects
                 </h2>
-                <p className="text-on-surface-variant text-lg">Proven results across Fintech, E-commerce, and Media.</p>
+                <p className="text-on-surface-variant text-lg">Real work. Real results.</p>
               </div>
-              <Link href="/case-studies" className="text-primary font-semibold flex items-center gap-2 hover:gap-4 transition-all">
+              <Link href="/projects" className="text-primary font-semibold flex items-center gap-2 hover:gap-4 transition-all">
                 View All Projects <span className="material-symbols-outlined">arrow_forward</span>
               </Link>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCrCTfu03BSPo9OfHFQvTvQYbyVIhG9dYA-euQG4GvRzuo2RT4AFfx_Sc3vqPtaBBbMciSnm-wmHQUomCMvQHgPrlC72YSNaja61KDFbzo4W2srYhU78EgI-BIa4Vr6gpSP3oIABeEthctZLDcqPo1PpOlsPMIE0hkyA68gNfq7MOqqNEkhuB8DaX7h66mYvBjejptirjvDTZ0_fI0h8fYmlrwbuXsD8-uUxi-E_hGvpI356_YyZ8peQxqyHfISWuNZBvA0u9tglw',
-                  alt: 'Global Trade Platform dashboard',
-                  tag: 'Fintech', tagClass: 'bg-primary/20 text-primary',
-                  title: 'Global Trade Platform',
-                  desc: 'Migrated 40k+ articles to a headless architecture, resulting in a 400% increase in mobile page speeds.',
-                  metric1: '99 Lighthouse', metric2: '0.8s LCP',
-                },
-                {
-                  img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB0MLLHuZfXl0F5v08-DDoHrI_OyTa4vYfxnDr3wvqO1eZb9Ia-F8Jglf2wCaZgp0Mitpn3-vO5RYhHWFm40bpgef_m3P4GaHK4u-ZPhmbnLzXefWoT7bqaXoiMjskyHCWqSaiP2xGo_bmvpgtYSQ4vfwxSEmxh4pRUtqNJD0N-nTPkUBSsbHrqNnkHwvVFGDnO1xJ_BoFjMDlMcK3855BW7r5rtMp35mlIr1boBEXTSy8GQc478WUMMCgIT3FppEXc7HxdMt58xA',
-                  alt: 'Luxe Interiors e-commerce',
-                  tag: 'E-commerce', tagClass: 'bg-outline-variant/20 text-on-surface-variant',
-                  title: 'Luxe Interiors',
-                  desc: 'High-end WooCommerce integration with custom inventory management via Node.js microservices.',
-                  metric1: '98 Lighthouse', metric2: '1.2s LCP',
-                },
-                {
-                  img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBxwH9DwQnmJ-VDEkd2c4CxOsoYsLtSHeG8ObztLQ01uVJZCBqqIT5O_NYem3iUs2yDcgqDWwiFHg2WJvCOYR_Td0zawnPISM4HUB9qiRAhNMgVLxSV2ogcNygOfKYKSjHHuu73l-G4iTsCIk1J5tutAGvFsZsV8AYNtQpfQ_8eFotfDKkYEXYE_wvk6JAWENi3NumAV9kJVPC2ID2FxVfgqjGgLgH4cTFRmiHQq3FE0bVOwvoQVY1dN6TFIUy3qOU1cFg2h05Q-A',
-                  alt: 'Streamline AI analytics dashboard',
-                  tag: 'SaaS', tagClass: 'bg-outline-variant/20 text-on-surface-variant',
-                  title: 'Streamline AI',
-                  desc: 'Next.js dashboard with complex data visualization for an AI-driven logistics provider.',
-                  metric1: '100 Lighthouse', metric2: '0.6s LCP',
-                },
-              ].map((project) => (
-                <div key={project.title} className="bg-surface-container-high rounded-xl overflow-hidden flex flex-col group hover:bg-surface-container-highest transition-colors cursor-pointer">
-                  <div className="aspect-video overflow-hidden">
-                    <img
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      src={project.img}
-                      alt={project.alt}
-                    />
+              {projects.map((project) => (
+                <a
+                  key={project._id}
+                  href={project.liveUrl || '#'}
+                  target={project.liveUrl ? '_blank' : undefined}
+                  rel="noopener noreferrer"
+                  className="bg-surface-container-high rounded-xl overflow-hidden flex flex-col group hover:bg-surface-container-highest transition-colors cursor-pointer"
+                >
+                  <div className="aspect-video overflow-hidden bg-surface-container-lowest">
+                    {project.mainImage ? (
+                      <Image
+                        src={urlFor(project.mainImage).width(600).height(338).url()}
+                        alt={project.mainImage.alt || project.title}
+                        width={600}
+                        height={338}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-on-surface/20">
+                        <span className="material-symbols-outlined text-5xl">web</span>
+                      </div>
+                    )}
                   </div>
                   <div className="p-8 flex flex-col flex-1">
                     <div className="flex justify-between items-start mb-6">
-                      <span className={`px-3 py-1 rounded-full ${project.tagClass} text-[10px] font-mono font-bold uppercase tracking-widest`}>
-                        {project.tag}
-                      </span>
+                      {project.category && (
+                        <span className="px-3 py-1 rounded-full bg-primary/20 text-primary text-[10px] font-mono font-bold uppercase tracking-widest">
+                          {project.category}
+                        </span>
+                      )}
                       <span className="material-symbols-outlined text-on-surface/40 group-hover:text-primary transition-colors">north_east</span>
                     </div>
                     <h3 className="text-2xl font-bold font-headline mb-4">{project.title}</h3>
-                    <p className="text-on-surface-variant text-sm leading-relaxed mb-8">{project.desc}</p>
-                    <div className="mt-auto pt-6 border-t border-outline-variant/10 flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="material-symbols-outlined text-tertiary text-lg">bolt</span>
-                        <span className="font-mono text-[10px] uppercase tracking-wider">{project.metric1}</span>
+                    <p className="text-on-surface-variant text-sm leading-relaxed mb-8">{project.description}</p>
+                    {project.tags?.length > 0 && (
+                      <div className="mt-auto pt-6 border-t border-outline-variant/10 flex flex-wrap gap-2">
+                        {project.tags.slice(0, 3).map((tag) => (
+                          <span key={tag} className="bg-surface-container text-on-surface-variant px-2 py-1 rounded-full text-[10px] font-mono">
+                            {tag}
+                          </span>
+                        ))}
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className="material-symbols-outlined text-primary text-lg">speed</span>
-                        <span className="font-mono text-[10px] uppercase tracking-wider">{project.metric2}</span>
-                      </div>
-                    </div>
+                    )}
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </div>
         </section>
 
         {/* ── Testimonials ── */}
-        <section className="py-32 px-12 max-w-[1440px] mx-auto overflow-hidden">
-          <div className="flex flex-col md:flex-row gap-24 items-start">
-            <div className="w-full md:w-1/3">
-              <h2 className="text-4xl font-extrabold font-headline tracking-tight mb-8 text-on-surface">What Partners Say</h2>
-              <p className="text-on-surface-variant text-lg leading-relaxed">
-                Collaborating with global agencies and engineering teams to deliver world-class digital experiences.
-              </p>
-            </div>
-            <div className="w-full md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-12">
-              {[
-                {
-                  quote: '"One of the few developers who truly understands the bridge between WordPress\'s content flexibility and Next.js\'s performance. A rare asset for any enterprise team."',
-                  name: 'Marcus Chen',
-                  role: 'CTO, PixelStream Digital',
-                  img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDucZ20rOd1QphdTqb7VNeGkcXrRAQRSvCV8ubCOaiQkGWJbNd5WIYmYrbs0GYUcGFvGyO-evh1W3tFr0JqzURQAWfftp8H-_Ft6byVs-Fi3BUrAyZ9OM-a2XGKQqsGjRdyPRjmfL2tjLM72HbMSZfEIoJyPR264RAjJxUR4PnGK6lgBpkH3RhWIdY_iYVxwi5X89Gl11d45iai4ojqPk91g0EexJ4K66fxKZ9wan5miUFynywOJpVwul7wWge6p0cWrCuNR5b-qQ',
-                },
-                {
-                  quote: '"The technical SEO audit alone was worth the engagement. Our organic traffic increased by 65% within three months of the migration."',
-                  name: 'Sarah Jenkins',
-                  role: 'Marketing Director, FinCore',
-                  img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAJ9ArlJ2h7LDTsq2lWKEWG2OAEbkdvsMwbY82hKkbkvtbG3JnC7ZiuUtquCot4uqeW9tSurQccOM8O9wpLuapNeDcBLkieXfmHyZ_0CK3_rZxqEknW63zRaglcFkmocQ42Ljw_xqbylO9n14DvMkMEAOLZtaRbTF7TRcRL2ljl0dOiw9jpWKZ-Gp_XrHAB0TBmemsszdnPXUGM11T17c-zXVtMGqW0A64K6WdDHKFomgWmLGktGc9XaFKirjBmfv1GH033daFeZg',
-                },
-              ].map((t) => (
-                <div key={t.name} className="relative">
-                  <span className="material-symbols-outlined text-primary/20 text-8xl absolute -top-10 -left-6 -z-10 select-none">format_quote</span>
-                  <p className="text-xl italic text-on-surface leading-relaxed mb-8">{t.quote}</p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-surface-container-high overflow-hidden shrink-0">
-                      <img className="w-full h-full object-cover" src={t.img} alt={t.name} />
-                    </div>
-                    <div>
-                      <p className="font-bold font-headline">{t.name}</p>
-                      <p className="text-xs font-mono uppercase tracking-widest text-on-surface-variant">{t.role}</p>
+        {testimonials.length > 0 && (
+          <section className="py-32 px-12 max-w-[1440px] mx-auto overflow-hidden">
+            <div className="flex flex-col md:flex-row gap-24 items-start">
+              <div className="w-full md:w-1/3">
+                <h2 className="text-4xl font-extrabold font-headline tracking-tight mb-8 text-on-surface">What Partners Say</h2>
+                <p className="text-on-surface-variant text-lg leading-relaxed">
+                  Collaborating with global agencies and engineering teams to deliver world-class digital experiences.
+                </p>
+              </div>
+              <div className="w-full md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-12">
+                {testimonials.map((t) => (
+                  <div key={t._id} className="relative">
+                    <span className="material-symbols-outlined text-primary/20 text-8xl absolute -top-10 -left-6 -z-10 select-none">format_quote</span>
+                    <p className="text-xl italic text-on-surface leading-relaxed mb-8">&ldquo;{t.testimonial}&rdquo;</p>
+                    <div className="flex items-center gap-4">
+                      {t.avatar ? (
+                        <div className="w-12 h-12 rounded-full bg-surface-container-high overflow-hidden shrink-0">
+                          <img
+                            className="w-full h-full object-cover"
+                            src={urlFor(t.avatar).width(96).height(96).url()}
+                            alt={t.clientName}
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center shrink-0">
+                          <span className="material-symbols-outlined text-on-surface/40">person</span>
+                        </div>
+                      )}
+                      <div>
+                        <p className="font-bold font-headline">{t.clientName}</p>
+                        <p className="text-xs font-mono uppercase tracking-widest text-on-surface-variant">{t.designation}</p>
+                        {t.serviceProvided && (
+                          <p className="text-[10px] font-mono text-secondary mt-0.5">{t.serviceProvided}</p>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* ── Final CTA ── */}
         <section className="py-32 px-12">
