@@ -29,12 +29,11 @@ interface Post {
   readTime?: number
 }
 
-function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString('en-AU', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  })
+function formatDate(dateStr: string | undefined): string {
+  if (!dateStr) return ''
+  const d = new Date(dateStr)
+  if (isNaN(d.getTime())) return ''
+  return d.toLocaleDateString('en-AU', { month: 'short', day: 'numeric', year: 'numeric' })
 }
 
 function PostCardSkeleton() {
@@ -72,6 +71,7 @@ function CategoryBadge({ category }: { category?: string }) {
 }
 
 function FeaturedCard({ post }: { post: Post }) {
+  if (!post.slug) return null
   return (
     <Link
       href={`/blog/${post.slug}`}
@@ -120,6 +120,7 @@ function FeaturedCard({ post }: { post: Post }) {
 }
 
 function PostCard({ post }: { post: Post }) {
+  if (!post.slug) return null
   return (
     <Link
       href={`/blog/${post.slug}`}

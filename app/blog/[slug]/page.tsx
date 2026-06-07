@@ -103,16 +103,20 @@ const ptComponents: PortableTextComponents = {
         {children}
       </code>
     ),
-    link: ({ value, children }) => (
-      <a
-        href={value?.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue underline underline-offset-2 hover:text-blue-dark transition-colors"
-      >
-        {children}
-      </a>
-    ),
+    link: ({ value, children }) => {
+      const href = value?.href
+      const safe = href && /^https?:\/\//i.test(href) ? href : '#'
+      return (
+        <a
+          href={safe}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue underline underline-offset-2 hover:text-blue-dark transition-colors"
+        >
+          {children}
+        </a>
+      )
+    },
   },
 }
 

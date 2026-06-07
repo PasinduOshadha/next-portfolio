@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 interface FormState {
   name: string
@@ -13,6 +13,15 @@ interface FormState {
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
+const INITIAL_FORM: FormState = {
+  name: '',
+  email: '',
+  company: '',
+  projectType: '',
+  message: '',
+  budget: '',
+}
+
 const inputClass =
   'bg-surface-mid border border-outline text-primary-text placeholder:text-muted ' +
   'rounded-md px-4 py-3 w-full ' +
@@ -22,16 +31,14 @@ const inputClass =
 const labelClass = 'text-primary-text text-sm font-medium mb-1.5 block'
 
 export default function ContactForm() {
-  const [form, setForm] = useState<FormState>({
-    name: '',
-    email: '',
-    company: '',
-    projectType: '',
-    message: '',
-    budget: '',
-  })
+  const [form, setForm] = useState<FormState>(INITIAL_FORM)
   const [status, setStatus] = useState<Status>('idle')
   const [errorMessage, setErrorMessage] = useState<string>('')
+  const abortRef = useRef<AbortController | null>(null)
+
+  useEffect(() => {
+    return () => abortRef.current?.abort()
+  }, [])
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -41,6 +48,22 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (status === 'loading') return
+
+    if (!form.name.trim() || !form.email.trim()) {
+      setStatus('error')
+      setErrorMessage('Name and email are required.')
+      return
+    }
+    if (form.message.trim().length < 20) {
+      setStatus('error')
+      setErrorMessage('Message must be at least 20 characters.')
+      return
+    }
+
+    abortRef.current?.abort()
+    abortRef.current = new AbortController()
+
     setStatus('loading')
     setErrorMessage('')
 
@@ -49,13 +72,24 @@ export default function ContactForm() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
+        signal: abortRef.current.signal,
       })
-      if (!res.ok) throw new Error('Request failed')
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error((data as { error?: string }).error || 'Request failed')
+      }
+
       setStatus('success')
-      setForm({ name: '', email: '', company: '', projectType: '', message: '', budget: '' })
-    } catch {
+      setForm(INITIAL_FORM)
+    } catch (err) {
+      if (err instanceof Error && err.name === 'AbortError') return
       setStatus('error')
-      setErrorMessage('Something went wrong. Please try again or email me directly.')
+      setErrorMessage(
+        err instanceof Error && err.message !== 'Request failed'
+          ? err.message
+          : 'Something went wrong. Please try again or email me directly.'
+      )
     }
   }
 
@@ -137,7 +171,7 @@ export default function ContactForm() {
       {/* Message */}
       <div>
         <label htmlFor="message" className={labelClass}>
-          Message <span className="text-muted font-normal">(required)</span>
+          Message <span className="text-muted font-normal">(required, min 20 chars)</span>
         </label>
         <textarea
           id="message"
@@ -174,17 +208,17 @@ export default function ContactForm() {
         </select>
       </div>
 
-      {/* Success message */}
-      {status === 'success' && (
-        <p className="text-success font-mono text-sm">
-          Got it. I&apos;ll get back to you within 24 hours — usually sooner.
-        </p>
-      )}
-
-      {/* Error message */}
-      {status === 'error' && (
-        <p className="text-red-400 text-sm">{errorMessage}</p>
-      )}
+      {/* Status messages — aria-live so screen readers announce outcome */}
+      <div aria-live="polite" aria-atomic="true">
+        {status === 'success' && (
+          <p className="text-success font-mono text-sm">
+            Got it. I&apos;ll get back to you within 24 hours — usually sooner.
+          </p>
+        )}
+        {status === 'error' && (
+          <p className="text-red-400 text-sm">{errorMessage}</p>
+        )}
+      </div>
 
       {/* Submit */}
       <button
