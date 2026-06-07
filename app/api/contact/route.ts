@@ -1,12 +1,14 @@
 import { Resend } from 'resend'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-export async function POST(req) {
-  const { name, email, projectType, budget, brief } = await req.json()
+export async function POST(req: NextRequest) {
+  const { name, email, projectType, budget, brief, message } = await req.json()
 
-  if (!name || !email || !brief) {
+  const body = message || brief
+
+  if (!name || !email || !body) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
   }
 
@@ -22,8 +24,8 @@ export async function POST(req) {
       <p><strong>Project Type:</strong> ${projectType || '—'}</p>
       <p><strong>Budget:</strong> ${budget || '—'}</p>
       <hr />
-      <p><strong>Brief:</strong></p>
-      <p>${brief.replace(/\n/g, '<br />')}</p>
+      <p><strong>Message:</strong></p>
+      <p>${body.replace(/\n/g, '<br />')}</p>
     `,
   })
 
