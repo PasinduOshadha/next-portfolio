@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { ExternalLink, Mail } from 'lucide-react'
 
 const navLinks = [
   { href: '/projects', label: 'Work' },
@@ -74,7 +74,7 @@ export default function Footer() {
                 aria-label="GitHub"
                 className="text-muted hover:text-primary-text transition-colors duration-200"
               >
-                <Github size={18} />
+                <ExternalLink size={18} />
               </a>
               <a
                 href="https://www.linkedin.com/in/pasindu-oshadha"
@@ -83,7 +83,7 @@ export default function Footer() {
                 aria-label="LinkedIn"
                 className="text-muted hover:text-primary-text transition-colors duration-200"
               >
-                <Linkedin size={18} />
+                <ExternalLink size={18} />
               </a>
               <a
                 href="mailto:mailbox.pasindu@gmail.com"

@@ -1,4 +1,4 @@
-import { Mail, ExternalLink, Github } from 'lucide-react'
+import { Mail, ExternalLink } from 'lucide-react'
 import type { Metadata } from 'next'
 import ContactForm from './ContactForm'
 
@@ -57,7 +57,7 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 text-primary-text hover:text-blue transition-colors duration-150"
               >
-                <Github size={18} className="text-muted shrink-0" />
+                <ExternalLink size={18} className="text-muted shrink-0" />
                 <span className="text-sm">github.com/PasinduOshadha</span>
               </a>
             </div>

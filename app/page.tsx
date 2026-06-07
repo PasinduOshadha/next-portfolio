@@ -205,7 +205,7 @@ const expertise = [
     icon: Zap,
     title: 'WordPress Performance',
     description:
-      'Core Web Vitals, server-level caching, image pipelines, database optimization. I've taken sites from 6-second loads to sub-2s without touching the design.',
+      "Core Web Vitals, server-level caching, image pipelines, database optimization. I've taken sites from 6-second loads to sub-2s without touching the design.",
   },
   {
     icon: Layers,
@@ -251,19 +251,19 @@ const steps = [
     number: '01',
     title: 'Business goal first, scope second',
     description:
-      'Before I scope anything, I want to understand what the business needs to achieve — not just what the brief says to build. A technically correct solution that misses the business goal isn't a solution. Once I understand the outcome, the scope writes itself.',
+      "Before I scope anything, I want to understand what the business needs to achieve — not just what the brief says to build. A technically correct solution that misses the business goal isn't a solution. Once I understand the outcome, the scope writes itself.",
   },
   {
     number: '02',
     title: 'Build, report, iterate',
     description:
-      'I document what I'm building and why. Weekly updates for ongoing work, Loom walkthroughs for complex deliverables. You shouldn't have to chase me.',
+      "I document what I'm building and why. Weekly updates for ongoing work, Loom walkthroughs for complex deliverables. You shouldn't have to chase me.",
   },
   {
     number: '03',
     title: 'Ship and hand off clean',
     description:
-      'I write inline documentation for anything non-obvious. I don't leave things in a state that requires me to stay involved indefinitely — though I'm happy to.',
+      "I write inline documentation for anything non-obvious. I don't leave things in a state that requires me to stay involved indefinitely — though I'm happy to.",
   },
 ]
 

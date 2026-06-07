@@ -41,7 +41,7 @@ const timeline: Array<{ years: string; company: string; description: string }> =
     years: '2020 – 2022',
     company: 'Australia-based Digital Agency',
     description:
-      'Full-time remote role. WordPress development and maintenance for the agency's client portfolio, primarily e-commerce and media clients.',
+      "Full-time remote role. WordPress development and maintenance for the agency's client portfolio, primarily e-commerce and media clients.",
   },
   {
     years: '2015 – 2020',
@@ -54,19 +54,19 @@ const timeline: Array<{ years: string; company: string; description: string }> =
 const values: Array<{ title: string; body: string }> = [
   {
     title: 'Technology decisions follow business decisions.',
-    body: 'Before I recommend a solution, I want to understand what the business needs to achieve. Whether that's headless WordPress or a standard build, custom code or a plugin, a full rebuild or a targeted optimization — the right answer depends on the business context, not a technical preference. I'll tell you what I think the right call is and why.',
+    body: "Before I recommend a solution, I want to understand what the business needs to achieve. Whether that's headless WordPress or a standard build, custom code or a plugin, a full rebuild or a targeted optimization — the right answer depends on the business context, not a technical preference. I'll tell you what I think the right call is and why.",
   },
   {
-    title: 'I prefer custom code — when it's warranted.',
-    body: 'Not as a default, but because plugins are often the wrong tool for a specific problem. When a plugin is the right call, I'll say so. When building from scratch is the better investment for the business, I'll make the case for it.',
+    title: "I prefer custom code — when it's warranted.",
+    body: "Not as a default, but because plugins are often the wrong tool for a specific problem. When a plugin is the right call, I'll say so. When building from scratch is the better investment for the business, I'll make the case for it.",
   },
   {
     title: 'I document what I build.',
-    body: 'Code I write should be readable by the next developer — or by you, 18 months from now, when I'm not on retainer. That means inline comments where logic isn't obvious, README files for custom functionality, and Loom walkthroughs for complex handoffs.',
+    body: "Code I write should be readable by the next developer — or by you, 18 months from now, when I'm not on retainer. That means inline comments where logic isn't obvious, README files for custom functionality, and Loom walkthroughs for complex handoffs.",
   },
   {
-    title: 'I don't disappear mid-project.',
-    body: 'The most common complaint I hear about other developers is communication. I send weekly updates on ongoing work, I flag blockers early, and I don't ghost. That's a low bar, but apparently it matters.',
+    title: "I don't disappear mid-project.",
+    body: "The most common complaint I hear about other developers is communication. I send weekly updates on ongoing work, I flag blockers early, and I don't ghost. That's a low bar, but apparently it matters.",
   },
 ]
 
