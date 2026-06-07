@@ -103,6 +103,26 @@
   to   { transform: translateX(-50%); }
 }
 
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(30px, -20px) scale(1.05); }
+  66%       { transform: translate(-20px, 30px) scale(0.97); }
+}
+
 @theme {
   --animate-marquee: marquee 30s linear infinite;
+
+  /* ── Revamp 2026 design tokens ── */
+  --color-surface:         #0d0d0d;
+  --color-surface-low:     #141414;
+  --color-surface-mid:     #1a1a1a;
+  --color-surface-high:    #222222;
+  --color-surface-highest: #2e2e2e;
+  --color-primary-text:    #e8e8e8;
+  --color-muted:           #9a9a9a;
+  --color-blue:            #4f8ef7;
+  --color-blue-dark:       #1a5fd4;
+  --color-purple:          #c084fc;
+  --color-success:         #34d399;
+  --color-outline:         #2e2e2e;
 }
