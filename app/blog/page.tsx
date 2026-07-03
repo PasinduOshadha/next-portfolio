@@ -5,14 +5,15 @@ import Footer from '../../components/Footer'
 import { client } from '../../sanity/lib/client'
 import { POSTS_QUERY } from '../../sanity/lib/queries'
 import { urlFor } from '../../sanity/lib/image'
+import type { Post } from '../../types/content'
 
 export const revalidate = 60
 
 export default async function BlogPage() {
-  const posts = await client.fetch(POSTS_QUERY)
+  const posts = await client.fetch<Post[]>(POSTS_QUERY)
 
-  const featured = posts.find((p) => p.featured)
-  const rest = posts.filter((p) => !p.featured || p._id !== featured?._id)
+  const featured = posts.find((p: Post) => p.featured)
+  const rest = posts.filter((p: Post) => !p.featured || p._id !== featured?._id)
 
   return (
     <>

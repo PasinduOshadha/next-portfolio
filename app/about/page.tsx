@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -148,10 +149,12 @@ export default function AboutPage() {
             {/* Left: profile photo */}
             <div className="md:col-span-5 relative group">
               <div className="w-[400px] h-[400px] max-w-full overflow-hidden bg-surface-container relative border border-outline-variant mx-auto">
-                <img
-                  className="w-full h-full object-cover opacity-80 transition-all duration-700"
+                <Image
                   src="/images/dp-pasindu-oshadha.jpeg"
                   alt="Pasindu Oshadha — Senior Developer"
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-cover opacity-80 transition-all duration-700"
                 />
               </div>
             </div>
@@ -225,7 +228,14 @@ export default function AboutPage() {
                   ]).map(({ name, slug, color }, i) => (
                     <div key={i} className="flex items-center gap-3 px-5 py-3 bg-surface-container-lowest border border-outline-variant shrink-0">
                       <div className="w-8 h-8 bg-surface-container flex items-center justify-center shrink-0">
-                        <img src={`https://cdn.simpleicons.org/${slug}/${color}`} alt={name} className="w-5 h-5 object-contain" />
+                        <Image
+                          src={`https://cdn.simpleicons.org/${slug}/${color}`}
+                          alt={name}
+                          width={20}
+                          height={20}
+                          unoptimized
+                          className="w-5 h-5 object-contain"
+                        />
                       </div>
                       <span className="text-sm font-mono text-on-surface whitespace-nowrap">{name}</span>
                     </div>
@@ -251,7 +261,14 @@ export default function AboutPage() {
                   ]).map(({ name, slug, color }, i) => (
                     <div key={i} className="flex items-center gap-3 px-5 py-3 bg-surface-container-lowest border border-outline-variant shrink-0">
                       <div className="w-8 h-8 bg-surface-container flex items-center justify-center shrink-0">
-                        <img src={`https://cdn.simpleicons.org/${slug}/${color}`} alt={name} className="w-5 h-5 object-contain" />
+                        <Image
+                          src={`https://cdn.simpleicons.org/${slug}/${color}`}
+                          alt={name}
+                          width={20}
+                          height={20}
+                          unoptimized
+                          className="w-5 h-5 object-contain"
+                        />
                       </div>
                       <span className="text-sm font-mono text-on-surface whitespace-nowrap">{name}</span>
                     </div>

@@ -4,11 +4,12 @@ import Footer from '../../components/Footer'
 import CaseStudiesGrid from './CaseStudiesGrid'
 import { client } from '../../sanity/lib/client'
 import { CASE_STUDIES_QUERY } from '../../sanity/lib/queries'
+import type { CaseStudy } from '../../types/content'
 
 export const revalidate = 60
 
 export default async function CaseStudiesPage() {
-  const caseStudies = await client.fetch(CASE_STUDIES_QUERY)
+  const caseStudies = await client.fetch<CaseStudy[]>(CASE_STUDIES_QUERY)
 
   return (
     <>

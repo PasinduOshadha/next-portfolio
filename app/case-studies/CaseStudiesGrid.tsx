@@ -4,15 +4,20 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { urlFor } from '../../sanity/lib/image'
+import type { CaseStudy } from '../../types/content'
 
 const filters = ['All', 'WordPress', 'WooCommerce', 'Headless / Next.js', 'Performance & SEO', 'API Integration']
 
-export default function CaseStudiesGrid({ caseStudies }) {
+interface CaseStudiesGridProps {
+  caseStudies: CaseStudy[]
+}
+
+export default function CaseStudiesGrid({ caseStudies }: CaseStudiesGridProps) {
   const [activeFilter, setActiveFilter] = useState('All')
 
   const filtered = activeFilter === 'All'
     ? caseStudies
-    : caseStudies.filter((c) => c.category === activeFilter)
+    : caseStudies.filter((c: CaseStudy) => c.category === activeFilter)
 
   return (
     <section className="py-16 px-6 md:px-12 max-w-[1440px] mx-auto">
@@ -87,9 +92,9 @@ export default function CaseStudiesGrid({ caseStudies }) {
               <p className="text-on-surface-variant text-sm leading-relaxed mb-6">{item.excerpt}</p>
 
               {/* Tech stack */}
-              {item.tags?.length > 0 && (
+              {item.tags && item.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {item.tags.map((tech) => (
+                  {item.tags.map((tech: string) => (
                     <span key={tech} className="mono-tag px-3 py-1 text-xs font-mono">
                       {tech}
                     </span>
@@ -98,7 +103,7 @@ export default function CaseStudiesGrid({ caseStudies }) {
               )}
 
               {/* Metrics */}
-              {item.results?.length > 0 && (
+              {item.results && item.results.length > 0 && (
                 <div className="mt-auto pt-6 border-t border-outline-variant/60 flex flex-wrap gap-6">
                   {item.results.slice(0, 3).map((r, i) => (
                     <div key={i} className="flex items-center gap-2">

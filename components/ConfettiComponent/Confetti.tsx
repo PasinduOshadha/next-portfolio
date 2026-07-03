@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import type { Container } from '@tsparticles/engine'
+import React, { useEffect, useState } from 'react';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import { confetti } from "@tsparticles/confetti";
-import { particleData, confettiData } from './data'
+import { confettiData } from './data'
 
 
 function Confetti() {
@@ -16,22 +17,13 @@ function Confetti() {
         initParticlesEngine(async (engine) => {
 
             await loadSlim(engine);
-            await confetti();
 
         }).then(() => {
             setInit(true);
         });
     }, []);
 
-    const options = useMemo(
-        () => ({ ...particleData }),
-        [],
-    );
-
-
-    const particlesLoaded = (container) => {
-        // console.log(container);
-    };
+    const particlesLoaded = async (_container?: Container): Promise<void> => {};
 
     return (
         <div>
@@ -39,7 +31,7 @@ function Confetti() {
                 id="tsparticles"
                 particlesLoaded={particlesLoaded}
                 options={{
-                    preset: confetti({ ...confettiData }),
+                    ...confettiData,
                 }}
             />
         </div>
