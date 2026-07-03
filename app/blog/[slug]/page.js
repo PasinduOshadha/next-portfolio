@@ -28,7 +28,7 @@ export async function generateMetadata({ params }) {
 const ptComponents = {
   types: {
     image: ({ value }) => value?.asset ? (
-      <figure className="my-10 rounded-xl overflow-hidden">
+      <figure className="my-10 overflow-hidden border border-outline-variant">
         <Image
           src={urlFor(value).width(1200).url()}
           alt={value.alt || ''}
@@ -44,11 +44,11 @@ const ptComponents = {
       </figure>
     ) : null,
     code: ({ value }) => (
-      <div className="my-8 bg-surface-container-lowest rounded-xl overflow-hidden">
-        <div className="flex items-center gap-2 px-6 py-3 border-b border-outline-variant/10">
-          <div className="w-3 h-3 rounded-full bg-error/20" />
-          <div className="w-3 h-3 rounded-full bg-tertiary/20" />
-          <div className="w-3 h-3 rounded-full bg-primary/20" />
+      <div className="my-8 bg-surface-container-lowest border border-outline-variant overflow-hidden">
+        <div className="flex items-center gap-2 px-6 py-3 border-b border-outline-variant/60">
+          <div className="w-3 h-3 bg-surface-container-highest" />
+          <div className="w-3 h-3 bg-surface-container-high" />
+          <div className="w-3 h-3 bg-on-surface" />
           {value.language && (
             <span className="ml-auto text-[10px] font-mono uppercase tracking-widest text-on-surface-variant">
               {value.language}
@@ -63,16 +63,16 @@ const ptComponents = {
   },
   block: {
     h2: ({ children }) => (
-      <h2 className="text-3xl font-bold font-headline mt-12 mb-4 text-on-surface tracking-tight">{children}</h2>
+      <h2 className="text-3xl font-medium font-headline mt-12 mb-4 text-on-surface">{children}</h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-2xl font-bold font-headline mt-8 mb-3 text-on-surface">{children}</h3>
+      <h3 className="text-2xl font-medium font-headline mt-8 mb-3 text-on-surface">{children}</h3>
     ),
     normal: ({ children }) => (
       <p className="text-on-surface-variant leading-relaxed mb-6 text-[1.0625rem]">{children}</p>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-2 border-primary pl-6 my-8 text-on-surface-variant italic text-lg">
+      <blockquote className="border-l-2 border-on-surface pl-6 my-8 text-on-surface-variant italic text-lg">
         {children}
       </blockquote>
     ),
@@ -86,7 +86,7 @@ const ptComponents = {
   listItem: {
     bullet: ({ children }) => (
       <li className="flex items-start gap-2 text-on-surface-variant">
-        <span className="material-symbols-outlined text-primary text-sm mt-1">arrow_forward</span>
+        <span className="material-symbols-outlined text-on-surface text-sm mt-1">arrow_forward</span>
         <span>{children}</span>
       </li>
     ),
@@ -94,7 +94,7 @@ const ptComponents = {
   marks: {
     strong: ({ children }) => <strong className="text-on-surface font-semibold">{children}</strong>,
     code: ({ children }) => (
-      <code className="bg-surface-container-lowest text-secondary font-mono text-sm px-1.5 py-0.5 rounded">
+      <code className="bg-surface-container-lowest text-on-surface font-mono text-sm px-1.5 py-0.5">
         {children}
       </code>
     ),
@@ -103,7 +103,7 @@ const ptComponents = {
         href={value?.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+        className="text-on-surface underline underline-offset-2 hover:text-on-surface-variant transition-colors"
       >
         {children}
       </a>
@@ -123,8 +123,7 @@ export default async function BlogPostPage({ params }) {
       <main className="relative">
 
         {/* ── Hero ── */}
-        <section className="relative pt-40 pb-16 px-12 max-w-[1440px] mx-auto">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary-container/10 rounded-full blur-[120px] pointer-events-none" />
+        <section className="relative pt-40 pb-16 px-6 md:px-12 max-w-[1440px] mx-auto">
           <div className="relative z-10 max-w-3xl">
             <Link
               href="/blog"
@@ -136,7 +135,7 @@ export default async function BlogPostPage({ params }) {
 
             <div className="flex flex-wrap items-center gap-3 mb-6">
               {post.category && (
-                <span className="px-3 py-1 rounded-full bg-secondary/20 text-secondary text-[10px] font-mono font-bold uppercase tracking-widest">
+                <span className="mono-tag px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-widest">
                   {post.category}
                 </span>
               )}
@@ -152,7 +151,7 @@ export default async function BlogPostPage({ params }) {
               )}
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter leading-[1.05] mb-6 font-headline text-on-surface">
+            <h1 className="text-4xl md:text-6xl font-medium leading-[1.05] mb-6 font-headline text-on-surface">
               {post.title}
             </h1>
             <p className="text-xl text-on-surface-variant leading-relaxed">{post.excerpt}</p>
@@ -161,8 +160,8 @@ export default async function BlogPostPage({ params }) {
 
         {/* ── Cover Image ── */}
         {post.mainImage?.asset && (
-          <section className="px-12 max-w-[1440px] mx-auto mb-16">
-            <div className="rounded-2xl overflow-hidden aspect-video relative">
+          <section className="px-6 md:px-12 max-w-[1440px] mx-auto mb-16">
+            <div className="overflow-hidden aspect-video relative border border-outline-variant">
               <Image
                 src={urlFor(post.mainImage).width(1400).height(787).url()}
                 alt={post.mainImage.alt || post.title}
@@ -175,7 +174,7 @@ export default async function BlogPostPage({ params }) {
         )}
 
         {/* ── Body ── */}
-        <section className="px-12 max-w-[1440px] mx-auto pb-24">
+        <section className="px-6 md:px-12 max-w-[1440px] mx-auto pb-24">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-16">
 
             {/* Article */}
@@ -189,13 +188,13 @@ export default async function BlogPostPage({ params }) {
             <aside className="space-y-6">
               {/* Tags */}
               {post.tags?.length > 0 && (
-                <div className="bg-surface-container-high rounded-xl p-6 sticky top-24">
+                <div className="mono-card p-6 sticky top-24">
                   <p className="text-[10px] font-mono uppercase tracking-widest text-on-surface-variant mb-4">
                     Tags
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag) => (
-                      <span key={tag} className="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-xs font-mono">
+                      <span key={tag} className="mono-tag px-3 py-1 text-xs font-mono">
                         {tag}
                       </span>
                     ))}
@@ -208,23 +207,16 @@ export default async function BlogPostPage({ params }) {
         </section>
 
         {/* ── CTA ── */}
-        <section className="py-32 px-12">
-          <div className="max-w-[1440px] mx-auto bg-gradient-to-br from-surface-container-high to-surface rounded-3xl p-12 md:p-24 text-center border border-outline-variant/10 relative overflow-hidden">
-            <div className="absolute -bottom-24 -right-24 w-[400px] h-[400px] bg-primary-container/10 rounded-full blur-[100px] pointer-events-none" />
-            <h2 className="text-4xl md:text-6xl font-extrabold font-headline tracking-tighter mb-6 leading-[1]">
+        <section className="py-32 px-6 md:px-12">
+          <div className="max-w-[1440px] mx-auto mono-section p-12 md:p-24 text-center relative overflow-hidden">
+            <h2 className="text-4xl md:text-6xl font-medium font-headline mb-6 leading-[1]">
               Want to work with me?
             </h2>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Link
-                href="/blog"
-                className="inline-block bg-surface-container-high/40 border border-outline-variant/20 backdrop-blur-md text-on-surface px-8 py-4 rounded-lg font-semibold hover:bg-surface-container-high transition-colors"
-              >
+              <Link href="/blog" className="mono-button-secondary px-8 py-4 font-semibold">
                 More Articles
               </Link>
-              <Link
-                href="/contact"
-                className="inline-block bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-8 py-4 rounded-lg font-bold hover:scale-105 transition-transform duration-200"
-              >
+              <Link href="/contact" className="mono-button-primary px-8 py-4 font-bold">
                 Get in Touch
               </Link>
             </div>

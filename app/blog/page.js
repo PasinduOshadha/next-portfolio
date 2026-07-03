@@ -20,13 +20,12 @@ export default async function BlogPage() {
       <main className="relative">
 
         {/* ── Page Hero ── */}
-        <section className="relative py-32 px-12 max-w-[1440px] mx-auto pt-40">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary-container/10 rounded-full blur-[120px] pointer-events-none" />
+        <section className="relative py-32 px-6 md:px-12 max-w-[1440px] mx-auto pt-40">
           <div className="relative z-10">
-            <span className="font-mono text-secondary text-sm tracking-widest uppercase mb-4 block">
+            <span className="font-mono text-on-surface-variant text-[11px] tracking-[0.22em] uppercase mb-4 block">
               Writing
             </span>
-            <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter leading-[0.9] mb-8 font-headline text-on-surface">
+            <h1 className="text-6xl md:text-8xl font-medium leading-[0.9] mb-8 font-headline text-on-surface">
               The Engineering<br />Journal.
             </h1>
             <p className="text-xl md:text-2xl text-on-surface-variant max-w-2xl leading-relaxed">
@@ -35,7 +34,7 @@ export default async function BlogPage() {
           </div>
         </section>
 
-        <section className="px-12 max-w-[1440px] mx-auto pb-32">
+        <section className="px-6 md:px-12 max-w-[1440px] mx-auto pb-32">
 
           {posts.length === 0 ? (
             <div className="text-center py-24 text-on-surface-variant font-mono text-sm">
@@ -47,7 +46,7 @@ export default async function BlogPage() {
               {featured && (
                 <Link
                   href={`/blog/${featured.slug}`}
-                  className="group block bg-surface-container-high rounded-2xl overflow-hidden mb-16 hover:bg-surface-container-highest transition-colors duration-200"
+                  className="group block mono-card overflow-hidden mb-16"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2">
                     <div className="aspect-video md:aspect-auto overflow-hidden relative min-h-[300px]">
@@ -68,14 +67,14 @@ export default async function BlogPage() {
                     </div>
                     <div className="p-10 md:p-12 flex flex-col justify-center">
                       <div className="flex items-center gap-3 mb-4">
-                        <span className="px-3 py-1 rounded-full bg-primary/20 text-primary text-[10px] font-mono font-bold uppercase tracking-widest">
+                        <span className="mono-tag px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-widest">
                           {featured.category}
                         </span>
                         <span className="text-[10px] font-mono uppercase tracking-widest text-on-surface-variant">
                           Featured
                         </span>
                       </div>
-                      <h2 className="text-3xl md:text-4xl font-extrabold font-headline tracking-tighter mb-4 text-on-surface">
+                      <h2 className="text-3xl md:text-4xl font-medium font-headline mb-4 text-on-surface">
                         {featured.title}
                       </h2>
                       <p className="text-on-surface-variant leading-relaxed mb-6">{featured.excerpt}</p>
@@ -86,7 +85,7 @@ export default async function BlogPage() {
                             {new Date(featured.publishedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
                           </span>
                         )}
-                        <span className="ml-auto flex items-center gap-1 text-primary group-hover:gap-2 transition-all">
+                        <span className="ml-auto flex items-center gap-1 text-on-surface group-hover:gap-2 transition-all">
                           Read Article
                           <span className="material-symbols-outlined text-sm">arrow_forward</span>
                         </span>
@@ -103,7 +102,7 @@ export default async function BlogPage() {
                     <Link
                       key={post._id}
                       href={`/blog/${post.slug}`}
-                      className="group bg-surface-container-high rounded-xl overflow-hidden flex flex-col hover:bg-surface-container-highest transition-colors duration-200"
+                      className="group mono-card overflow-hidden flex flex-col"
                     >
                       <div className="aspect-video overflow-hidden bg-surface-container-lowest relative">
                         {post.mainImage?.asset ? (
@@ -121,16 +120,16 @@ export default async function BlogPage() {
                         )}
                       </div>
                       <div className="p-6 flex flex-col flex-1">
-                        <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary self-start text-[10px] font-mono font-bold uppercase tracking-widest mb-4">
+                        <span className="mono-tag self-start px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-widest mb-4">
                           {post.category}
                         </span>
-                        <h3 className="text-xl font-bold font-headline mb-2 text-on-surface flex-1">
+                        <h3 className="text-xl font-medium font-headline mb-2 text-on-surface flex-1">
                           {post.title}
                         </h3>
                         <p className="text-on-surface-variant text-sm leading-relaxed mb-4 line-clamp-2">
                           {post.excerpt}
                         </p>
-                        <div className="mt-auto pt-4 border-t border-outline-variant/10 flex items-center justify-between text-xs font-mono text-on-surface-variant">
+                        <div className="mt-auto pt-4 border-t border-outline-variant/60 flex items-center justify-between text-xs font-mono text-on-surface-variant">
                           <div className="flex items-center gap-3">
                             {post.readTime && <span>{post.readTime} min read</span>}
                             {post.publishedAt && (
@@ -139,7 +138,7 @@ export default async function BlogPage() {
                               </span>
                             )}
                           </div>
-                          <span className="material-symbols-outlined text-primary text-sm group-hover:translate-x-1 transition-transform">
+                          <span className="material-symbols-outlined text-on-surface text-sm group-hover:translate-x-1 transition-transform">
                             arrow_forward
                           </span>
                         </div>

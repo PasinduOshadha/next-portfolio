@@ -28,11 +28,11 @@ export default function ContactForm() {
   }
 
   const inputClass =
-    'w-full px-5 py-3 rounded-lg bg-surface-container text-on-surface placeholder:text-on-surface/40 border border-outline-variant/20 focus:outline-none focus:ring-2 focus:ring-primary/40 font-mono text-sm'
+    'w-full px-5 py-3 bg-white text-on-surface placeholder:text-on-surface/40 border border-outline-variant focus:outline-none focus:ring-2 focus:ring-on-surface/15 font-mono text-sm'
 
   return (
-    <form onSubmit={handleSubmit} className="bg-surface-container-high rounded-xl p-10 flex flex-col gap-6">
-      <h2 className="text-2xl font-bold font-headline text-on-surface mb-2">Send a Message</h2>
+    <form onSubmit={handleSubmit} className="mono-card p-10 flex flex-col gap-6">
+      <h2 className="text-2xl font-medium font-headline text-on-surface mb-2">Send a Message</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="flex flex-col gap-2">
@@ -104,12 +104,12 @@ export default function ContactForm() {
       </div>
 
       {status === 'success' && (
-        <p className="text-sm font-mono text-primary bg-primary/10 px-4 py-3 rounded-lg">
-          Message sent. I'll be in touch shortly.
+        <p className="text-sm font-mono text-on-surface bg-surface-container-low px-4 py-3 border border-outline-variant">
+          Message sent. I&apos;ll be in touch shortly.
         </p>
       )}
       {status === 'error' && (
-        <p className="text-sm font-mono text-error bg-error/10 px-4 py-3 rounded-lg">
+        <p className="text-sm font-mono text-on-surface bg-surface-container px-4 py-3 border border-on-surface">
           Something went wrong. Please try again or email directly.
         </p>
       )}
@@ -117,7 +117,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary-container py-4 rounded-lg text-lg font-bold hover:scale-105 transition-transform duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+        className="w-full mono-button-primary py-4 text-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {status === 'loading' ? 'Sending...' : 'Initialize Inquiry'}
       </button>

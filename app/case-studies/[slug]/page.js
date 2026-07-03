@@ -28,7 +28,7 @@ export async function generateMetadata({ params }) {
 const ptComponents = {
   types: {
     image: ({ value }) => (
-      <figure className="my-10 rounded-xl overflow-hidden">
+      <figure className="my-10 overflow-hidden border border-outline-variant">
         <Image
           src={urlFor(value).width(1200).url()}
           alt={value.alt || ''}
@@ -45,11 +45,11 @@ const ptComponents = {
     ),
   },
   block: {
-    h2: ({ children }) => <h2 className="text-3xl font-bold font-headline mt-12 mb-4 text-on-surface">{children}</h2>,
-    h3: ({ children }) => <h3 className="text-2xl font-bold font-headline mt-8 mb-3 text-on-surface">{children}</h3>,
+    h2: ({ children }) => <h2 className="text-3xl font-medium font-headline mt-12 mb-4 text-on-surface">{children}</h2>,
+    h3: ({ children }) => <h3 className="text-2xl font-medium font-headline mt-8 mb-3 text-on-surface">{children}</h3>,
     normal: ({ children }) => <p className="text-on-surface-variant leading-relaxed mb-6">{children}</p>,
     blockquote: ({ children }) => (
-      <blockquote className="border-l-2 border-primary pl-6 my-8 text-on-surface-variant italic">{children}</blockquote>
+      <blockquote className="border-l-2 border-on-surface pl-6 my-8 text-on-surface-variant italic">{children}</blockquote>
     ),
   },
   list: {
@@ -59,7 +59,7 @@ const ptComponents = {
   listItem: {
     bullet: ({ children }) => (
       <li className="flex items-start gap-2 text-on-surface-variant">
-        <span className="material-symbols-outlined text-primary text-sm mt-0.5">arrow_forward</span>
+        <span className="material-symbols-outlined text-on-surface text-sm mt-0.5">arrow_forward</span>
         <span>{children}</span>
       </li>
     ),
@@ -67,12 +67,12 @@ const ptComponents = {
   marks: {
     strong: ({ children }) => <strong className="text-on-surface font-semibold">{children}</strong>,
     code: ({ children }) => (
-      <code className="bg-surface-container-lowest text-secondary font-mono text-sm px-1.5 py-0.5 rounded">
+      <code className="bg-surface-container-lowest text-on-surface font-mono text-sm px-1.5 py-0.5">
         {children}
       </code>
     ),
     link: ({ value, children }) => (
-      <a href={value?.href} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">
+      <a href={value?.href} target="_blank" rel="noopener noreferrer" className="text-on-surface underline underline-offset-2">
         {children}
       </a>
     ),
@@ -91,8 +91,7 @@ export default async function CaseStudyPage({ params }) {
       <main className="relative">
 
         {/* ── Hero ── */}
-        <section className="relative pt-40 pb-16 px-12 max-w-[1440px] mx-auto">
-          <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary-container/10 rounded-full blur-[120px] pointer-events-none" />
+        <section className="relative pt-40 pb-16 px-6 md:px-12 max-w-[1440px] mx-auto">
           <div className="relative z-10 max-w-4xl">
             <Link
               href="/case-studies"
@@ -103,7 +102,7 @@ export default async function CaseStudyPage({ params }) {
             </Link>
 
             <div className="flex flex-wrap items-center gap-3 mb-6">
-              <span className="px-3 py-1 rounded-full bg-primary/20 text-primary text-[10px] font-mono font-bold uppercase tracking-widest">
+              <span className="mono-tag px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-widest">
                 {study.category}
               </span>
               {study.client && (
@@ -113,7 +112,7 @@ export default async function CaseStudyPage({ params }) {
               )}
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter leading-[0.9] mb-6 font-headline text-on-surface">
+            <h1 className="text-5xl md:text-7xl font-medium leading-[0.9] mb-6 font-headline text-on-surface">
               {study.title}
             </h1>
             <p className="text-xl text-on-surface-variant max-w-2xl leading-relaxed">{study.excerpt}</p>
@@ -122,8 +121,8 @@ export default async function CaseStudyPage({ params }) {
 
         {/* ── Cover Image ── */}
         {study.mainImage && (
-          <section className="px-12 max-w-[1440px] mx-auto mb-16">
-            <div className="rounded-2xl overflow-hidden aspect-video relative">
+          <section className="px-6 md:px-12 max-w-[1440px] mx-auto mb-16">
+            <div className="overflow-hidden aspect-video relative border border-outline-variant">
               <Image
                 src={urlFor(study.mainImage).width(1400).height(787).url()}
                 alt={study.mainImage.alt || study.title}
@@ -137,12 +136,12 @@ export default async function CaseStudyPage({ params }) {
 
         {/* ── Metrics bar ── */}
         {study.results?.length > 0 && (
-          <section className="px-12 max-w-[1440px] mx-auto mb-16">
-            <div className="bg-surface-container-high rounded-2xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+          <section className="px-6 md:px-12 max-w-[1440px] mx-auto mb-16">
+            <div className="mono-section p-8 grid grid-cols-2 md:grid-cols-4 gap-8">
               {study.results.map((r, i) => (
                 <div key={i} className="flex flex-col items-start gap-2">
-                  {r.icon && <span className="material-symbols-outlined text-primary text-2xl">{r.icon}</span>}
-                  {r.value && <p className="text-3xl font-extrabold font-headline text-on-surface">{r.value}</p>}
+                  {r.icon && <span className="material-symbols-outlined text-on-surface text-2xl">{r.icon}</span>}
+                  {r.value && <p className="text-3xl font-medium font-headline text-on-surface">{r.value}</p>}
                   <p className="font-mono text-[10px] uppercase tracking-widest text-on-surface-variant">{r.label}</p>
                 </div>
               ))}
@@ -151,7 +150,7 @@ export default async function CaseStudyPage({ params }) {
         )}
 
         {/* ── Body ── */}
-        <section className="px-12 max-w-[1440px] mx-auto pb-24">
+        <section className="px-6 md:px-12 max-w-[1440px] mx-auto pb-24">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
 
             {/* Main content */}
@@ -181,13 +180,13 @@ export default async function CaseStudyPage({ params }) {
             <aside className="space-y-8">
               {/* Tech Stack */}
               {study.tags?.length > 0 && (
-                <div className="bg-surface-container-high rounded-xl p-6">
+                <div className="mono-card p-6">
                   <p className="text-[10px] font-mono uppercase tracking-widest text-on-surface-variant mb-4">
                     Tech Stack
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {study.tags.map((tag) => (
-                      <span key={tag} className="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-xs font-mono">
+                      <span key={tag} className="mono-tag px-3 py-1 text-xs font-mono">
                         {tag}
                       </span>
                     ))}
@@ -197,7 +196,7 @@ export default async function CaseStudyPage({ params }) {
 
               {/* Links */}
               {study.liveUrl && (
-                <div className="bg-surface-container-high rounded-xl p-6">
+                <div className="mono-card p-6">
                   <p className="text-[10px] font-mono uppercase tracking-widest text-on-surface-variant mb-4">
                     Links
                   </p>
@@ -205,7 +204,7 @@ export default async function CaseStudyPage({ params }) {
                     href={study.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-primary text-sm font-mono hover:underline"
+                    className="flex items-center gap-2 text-on-surface text-sm font-mono hover:underline"
                   >
                     <span className="material-symbols-outlined text-sm">open_in_new</span>
                     View Live Site
@@ -215,7 +214,7 @@ export default async function CaseStudyPage({ params }) {
 
               {/* Date */}
               {study.publishedAt && (
-                <div className="bg-surface-container-high rounded-xl p-6">
+                <div className="mono-card p-6">
                   <p className="text-[10px] font-mono uppercase tracking-widest text-on-surface-variant mb-2">
                     Published
                   </p>
@@ -230,23 +229,16 @@ export default async function CaseStudyPage({ params }) {
         </section>
 
         {/* ── Next CTA ── */}
-        <section className="py-32 px-12">
-          <div className="max-w-[1440px] mx-auto bg-gradient-to-br from-surface-container-high to-surface rounded-3xl p-12 md:p-24 text-center border border-outline-variant/10 relative overflow-hidden">
-            <div className="absolute -bottom-24 -right-24 w-[400px] h-[400px] bg-secondary-container/10 rounded-full blur-[100px] pointer-events-none" />
-            <h2 className="text-5xl md:text-7xl font-extrabold font-headline tracking-tighter mb-8 leading-[1]">
+        <section className="py-32 px-6 md:px-12">
+          <div className="max-w-[1440px] mx-auto mono-section p-12 md:p-24 text-center relative overflow-hidden">
+            <h2 className="text-5xl md:text-7xl font-medium font-headline mb-8 leading-[1]">
               Ready to work together?
             </h2>
             <div className="flex flex-wrap gap-6 justify-center">
-              <Link
-                href="/case-studies"
-                className="inline-block bg-surface-container-high/40 border border-outline-variant/20 backdrop-blur-md text-on-surface px-8 py-4 rounded-lg font-semibold hover:bg-surface-container-high transition-colors"
-              >
+              <Link href="/case-studies" className="mono-button-secondary px-8 py-4 font-semibold">
                 More Case Studies
               </Link>
-              <Link
-                href="/contact"
-                className="inline-block bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-8 py-4 rounded-lg font-bold hover:scale-105 transition-transform duration-200"
-              >
+              <Link href="/contact" className="mono-button-primary px-8 py-4 font-bold">
                 Get in Touch
               </Link>
             </div>

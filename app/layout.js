@@ -1,22 +1,11 @@
-import { Manrope, Inter, JetBrains_Mono } from 'next/font/google'
+import { Sora } from 'next/font/google'
 import './globals.css'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
-const manrope = Manrope({
+const sora = Sora({
   subsets: ['latin'],
-  weight: ['400', '600', '700', '800'],
-  variable: '--font-manrope',
-})
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-inter',
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains',
+  weight: ['400', '500'],
+  variable: '--font-headline-runtime',
 })
 
 export const metadata = {
@@ -35,14 +24,22 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap"
+        />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         />
       </head>
-      <body className={`${manrope.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className={sora.variable}>
         {children}
         <SpeedInsights />
       </body>

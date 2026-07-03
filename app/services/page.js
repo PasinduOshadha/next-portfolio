@@ -4,94 +4,66 @@ import Footer from '../../components/Footer'
 
 const services = [
   {
-    icon: 'architecture',
     title: 'WordPress Architecture',
-    desc: 'Enterprise-grade multi-site and headless WordPress systems.',
+    summary: 'Enterprise-grade WordPress systems for teams managing complex content models, scale constraints, and multi-stakeholder workflows.',
     deliverables: [
-      'Custom post types & taxonomies',
-      'Multi-site network setup',
-      'Headless REST/GraphQL APIs',
-      'Plugin architecture & custom blocks',
+      'Custom post types, taxonomies, and editorial data models',
+      'Multi-site planning and implementation',
+      'Plugin architecture and custom Gutenberg blocks',
+      'Headless-ready REST and GraphQL delivery layers',
     ],
   },
   {
-    icon: 'layers',
-    title: 'Headless Next.js Development',
-    desc: 'Decoupled front-ends powered by Next.js 14+ App Router.',
+    title: 'Headless Next.js Delivery',
+    summary: 'Modern frontend architecture for performance-critical content platforms and marketing ecosystems.',
     deliverables: [
-      'App Router architecture',
-      'ISR & SSG strategies',
-      'Apollo + GraphQL integration',
-      'Vercel deployment pipelines',
+      'App Router implementation and rendering strategy',
+      'ISR, SSG, and cache design for content-heavy pages',
+      'CMS and API integration architecture',
+      'Deployment hardening and production rollout support',
     ],
   },
   {
-    icon: 'speed',
-    title: 'Performance & SEO Engineering',
-    desc: 'Audit-to-implementation performance optimization.',
+    title: 'Performance And SEO Engineering',
+    summary: 'Technical audits and implementation work for sites that need measurable gains in speed, discoverability, and stability.',
     deliverables: [
-      'Core Web Vitals optimization',
-      'Technical SEO audits',
-      'Lighthouse score maximization',
-      'Schema markup & structured data',
+      'Core Web Vitals analysis and remediation',
+      'Technical SEO audits and structured-data fixes',
+      'Render path, asset, and caching optimization',
+      'Performance baselines and post-launch validation',
     ],
   },
   {
-    icon: 'settings_input_component',
-    title: 'Plugin & API Development',
-    desc: 'Custom WordPress plugins and backend API integrations.',
+    title: 'Plugins, APIs, And Integrations',
+    summary: 'Custom extensions and backend integrations when a platform needs capabilities beyond off-the-shelf solutions.',
     deliverables: [
-      'Custom plugin development',
-      'WooCommerce extensions',
-      'Third-party API bridges',
-      'Webhook & automation systems',
+      'Custom WordPress plugins and internal tooling',
+      'WooCommerce extensions and business logic',
+      'Third-party API bridges and webhook flows',
+      'Automation and system handoff documentation',
     ],
   },
 ]
 
 const steps = [
-  { num: '01', title: 'Discovery', desc: 'Deep-dive into requirements, constraints, and technical goals.' },
-  { num: '02', title: 'Architecture', desc: 'Design system blueprint, data models, and API contracts.' },
-  { num: '03', title: 'Build', desc: 'Iterative delivery with continuous integration and code review.' },
-  { num: '04', title: 'Optimize', desc: 'Performance audits, Core Web Vitals tuning, and launch hardening.' },
+  { num: '01', title: 'Discovery', desc: 'Clarify goals, constraints, and the business logic behind the build before writing implementation code.' },
+  { num: '02', title: 'Architecture', desc: 'Define the delivery model, data shape, rendering strategy, and integration boundaries.' },
+  { num: '03', title: 'Execution', desc: 'Build in controlled increments with testing, review checkpoints, and production-minded decisions.' },
+  { num: '04', title: 'Hardening', desc: 'Tune for performance, QA edge cases, and launch-readiness once the core solution is stable.' },
 ]
 
-const tiers = [
+const engagements = [
   {
-    name: 'Audit',
-    price: '$2,500',
-    period: '',
-    featured: false,
-    includes: [
-      'Full performance audit',
-      'Core Web Vitals report',
-      'Technical SEO review',
-      'Actionable recommendations',
-    ],
+    title: 'Audit Engagements',
+    description: 'Best for inherited platforms, launch-risk reviews, or performance bottlenecks that need a technical diagnosis before implementation.',
   },
   {
-    name: 'Project',
-    price: '$8,000',
-    period: '',
-    featured: true,
-    includes: [
-      'End-to-end delivery',
-      'Architecture & build',
-      'QA & performance tuning',
-      '60-day post-launch support',
-    ],
+    title: 'Build Engagements',
+    description: 'Best for end-to-end delivery where architecture, implementation, and rollout need to happen under one technical lead.',
   },
   {
-    name: 'Retainer',
-    price: '$4,500',
-    period: '/mo',
-    featured: false,
-    includes: [
-      'Ongoing development',
-      'Priority response',
-      'Monthly performance reports',
-      'Dedicated Slack channel',
-    ],
+    title: 'Ongoing Support',
+    description: 'Best for teams that already ship regularly and need retained engineering help for improvements, integrations, and technical direction.',
   },
 ]
 
@@ -101,142 +73,130 @@ export default function ServicesPage() {
       <Nav />
       <main className="relative">
 
-        {/* ── Page Hero ── */}
-        <section className="relative py-32 px-12 max-w-[1440px] mx-auto text-center pt-40">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary-container/10 rounded-full blur-[120px] pointer-events-none" />
-          <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container/20 border border-secondary/20 mb-8">
-              <span className="w-2 h-2 rounded-full bg-secondary inline-block" />
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-secondary">What I Do</span>
+        <section className="py-32 px-6 md:px-12 max-w-[1440px] mx-auto pt-40">
+          <div className="max-w-4xl">
+            <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-on-surface-variant mb-8">
+              Services
             </div>
-            <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter leading-[0.9] mb-8 font-headline text-on-surface">
-              Senior Engineering Services.
+            <h1 className="text-6xl md:text-8xl font-medium leading-[0.92] mb-8 font-headline text-on-surface">
+              Engineering services for content-heavy, performance-sensitive products.
             </h1>
-            <p className="text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
-              Precision-built solutions for teams that demand performance at scale.
+            <p className="text-xl md:text-2xl text-on-surface-variant max-w-3xl leading-relaxed mb-12">
+              I work across WordPress architecture, headless Next.js delivery, performance engineering, and custom integrations for teams that need durable technical decisions instead of flashy short-term builds.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link href="/contact" className="mono-button-primary px-8 py-4 text-lg font-bold">
+                Start An Inquiry
+              </Link>
+              <Link href="/case-studies" className="mono-button-secondary px-8 py-4 text-lg font-semibold">
+                Review Case Studies
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 px-6 md:px-12 max-w-[1440px] mx-auto border-t border-outline-variant/60">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {services.map((service, index) => (
+              <article key={service.title} className="mono-card p-10 flex flex-col gap-8">
+                <div className="flex items-start justify-between gap-6 border-b border-outline-variant/60 pb-6">
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-on-surface-variant mb-3">
+                      Service {String(index + 1).padStart(2, '0')}
+                    </p>
+                    <h2 className="text-3xl font-medium font-headline text-on-surface leading-tight">
+                      {service.title}
+                    </h2>
+                  </div>
+                  <span className="font-mono text-sm text-on-surface-variant">/0{index + 1}</span>
+                </div>
+                <p className="text-on-surface-variant leading-relaxed text-base">
+                  {service.summary}
+                </p>
+                <ul className="grid grid-cols-1 gap-3">
+                  {service.deliverables.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-on-surface-variant">
+                      <span className="mt-1 h-2 w-2 bg-on-surface shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="pt-4 border-t border-outline-variant/60">
+                  <Link href="/contact" className="inline-flex items-center gap-2 text-on-surface font-semibold border-b border-on-surface">
+                    Discuss This Scope
+                    <span className="material-symbols-outlined text-base">arrow_forward</span>
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="py-24 px-6 md:px-12 max-w-[1440px] mx-auto border-t border-outline-variant/60">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 items-start">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-on-surface-variant mb-6">
+                Working Model
+              </p>
+              <h2 className="text-4xl md:text-5xl font-medium font-headline text-on-surface mb-6">
+                How I approach delivery.
+              </h2>
+              <p className="text-lg text-on-surface-variant leading-relaxed max-w-xl">
+                The process is intentionally structured. It keeps requirements honest, architecture explicit, and implementation grounded in performance and maintainability from the beginning.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {steps.map((step, index) => (
+                <div key={step.num} className="mono-card p-8 flex flex-col gap-5">
+                  <div className="flex items-center justify-between border-b border-outline-variant/60 pb-4">
+                    <span className="font-mono text-sm text-on-surface">{step.num}</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-on-surface-variant">
+                      Phase {index + 1}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-medium font-headline text-on-surface">{step.title}</h3>
+                  <p className="text-sm leading-relaxed text-on-surface-variant">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24 px-6 md:px-12 max-w-[1440px] mx-auto border-t border-outline-variant/60">
+          <div className="mb-12">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-on-surface-variant mb-6">
+              Engagement Fit
+            </p>
+            <h2 className="text-4xl md:text-5xl font-medium font-headline text-on-surface mb-4">
+              Choose the right level of involvement.
+            </h2>
+            <p className="text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+              I usually work in one of three modes depending on the technical risk, delivery scope, and the maturity of the product team.
             </p>
           </div>
-        </section>
 
-        {/* ── Services Grid ── */}
-        <section className="py-32 px-12 max-w-[1440px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {services.map((service) => (
-              <div key={service.title} className="bg-surface-container-high rounded-xl p-10 flex flex-col gap-6">
-                <span className="material-symbols-outlined text-primary text-4xl">{service.icon}</span>
-                <div>
-                  <h3 className="text-2xl font-bold font-headline mb-3">{service.title}</h3>
-                  <p className="text-on-surface-variant leading-relaxed">{service.desc}</p>
-                </div>
-                <ul className="flex flex-col gap-2">
-                  {service.deliverables.map((d) => (
-                    <li key={d} className="flex items-center gap-3 text-sm text-on-surface-variant">
-                      <span className="material-symbols-outlined text-primary text-base">check_circle</span>
-                      {d}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-auto">
-                  <Link href="/contact" className="text-primary font-semibold flex items-center gap-2 hover:gap-4 transition-all">
-                    Learn More <span className="material-symbols-outlined text-base">arrow_forward</span>
-                  </Link>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {engagements.map((engagement) => (
+              <div key={engagement.title} className="mono-card p-8 flex flex-col gap-5">
+                <h3 className="text-2xl font-medium font-headline text-on-surface">{engagement.title}</h3>
+                <p className="text-on-surface-variant leading-relaxed text-sm">{engagement.description}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* ── Process Section ── */}
-        <section className="py-32 px-12 max-w-[1440px] mx-auto border-t border-outline-variant/10">
-          <h2 className="text-4xl md:text-5xl font-extrabold font-headline tracking-tight mb-16 text-center">
-            How I Work
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {steps.map((step, i) => (
-              <div key={step.num} className="flex flex-col gap-4 relative">
-                {i < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-6 left-full w-full h-px bg-outline-variant/20 -translate-x-1/2 z-0" />
-                )}
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center relative z-10">
-                  <span className="text-primary font-mono font-bold text-sm">{step.num}</span>
-                </div>
-                <h3 className="text-xl font-bold font-headline">{step.title}</h3>
-                <p className="text-on-surface-variant text-sm leading-relaxed">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── Pricing Tiers ── */}
-        {false && <section className="py-32 px-12 max-w-[1440px] mx-auto border-t border-outline-variant/10">
-          <h2 className="text-4xl md:text-5xl font-extrabold font-headline tracking-tight mb-4 text-center">
-            Engagement Models
-          </h2>
-          <p className="text-on-surface-variant text-center text-lg mb-16 max-w-xl mx-auto">
-            Flexible structures to match project scope, team size, and timeline.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {tiers.map((tier) => (
-              <div
-                key={tier.name}
-                className={`rounded-xl p-10 flex flex-col gap-6 ${
-                  tier.featured
-                    ? 'bg-gradient-to-br from-primary/10 to-primary-container/10 ring-2 ring-primary/30 relative'
-                    : 'bg-surface-container-high'
-                }`}
-              >
-                {tier.featured && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-primary rounded-full text-on-primary text-xs font-mono font-bold uppercase tracking-widest">
-                    Most Popular
-                  </div>
-                )}
-                <div>
-                  <div className="text-xs font-mono uppercase tracking-widest text-on-surface-variant mb-2">{tier.name}</div>
-                  <div className="flex items-end gap-1">
-                    <span className="text-sm text-on-surface-variant">from</span>
-                    <span className="text-4xl font-extrabold font-headline text-on-surface">{tier.price}</span>
-                    {tier.period && <span className="text-on-surface-variant">{tier.period}</span>}
-                  </div>
-                </div>
-                <ul className="flex flex-col gap-3">
-                  {tier.includes.map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-sm text-on-surface-variant">
-                      <span className="material-symbols-outlined text-primary text-base">check_circle</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-auto pt-4">
-                  <Link
-                    href="/contact"
-                    className={`block text-center py-3 rounded-lg font-semibold transition-all ${
-                      tier.featured
-                        ? 'bg-gradient-to-br from-primary to-primary-container text-on-primary-container hover:scale-105 transition-transform duration-200'
-                        : 'bg-surface-container-high/40 border border-outline-variant/20 backdrop-blur-md text-on-surface hover:bg-surface-container-high'
-                    }`}
-                  >
-                    Get Started
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>}
-
-        {/* ── CTA ── */}
-        <section className="py-32 px-12">
-          <div className="max-w-[1440px] mx-auto bg-gradient-to-br from-surface-container-high to-surface rounded-3xl p-12 md:p-24 text-center border border-outline-variant/10 relative overflow-hidden">
-            <div className="absolute -bottom-24 -right-24 w-[400px] h-[400px] bg-secondary-container/10 rounded-full blur-[100px] pointer-events-none" />
-            <h2 className="text-5xl md:text-7xl font-extrabold font-headline tracking-tighter mb-8 leading-[1]">
-              Ready to start your project?
+        <section className="py-32 px-6 md:px-12">
+          <div className="max-w-[1440px] mx-auto mono-section p-12 md:p-24 text-center">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-on-surface-variant mb-6">
+              Next Step
+            </p>
+            <h2 className="text-5xl md:text-7xl font-medium font-headline mb-8 leading-[1] text-on-surface">
+              Ready to scope the work properly?
             </h2>
             <p className="text-xl text-on-surface-variant max-w-2xl mx-auto mb-12">
-              Let&apos;s scope out your requirements and find the right engagement model for your team.
+              Send the project context, constraints, and what success looks like. I&apos;ll help define the right engagement before implementation starts.
             </p>
-            <Link
-              href="/contact"
-              className="inline-block bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-10 py-5 rounded-lg text-xl font-bold hover:scale-105 transition-transform duration-200"
-            >
+            <Link href="/contact" className="mono-button-primary px-10 py-5 text-xl font-bold">
               Initialize Inquiry
             </Link>
           </div>
