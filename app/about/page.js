@@ -1,17 +1,16 @@
 import Link from 'next/link'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import { Spotlight } from '../../components/ui/spotlight-new'
 import { Timeline } from '../../components/ui/timeline'
 
 const workHistory = [
   {
     title: "2017 — Present",
     content: (
-      <div className="bg-surface-container-high rounded-xl p-8 flex flex-col gap-4">
+      <div className="mono-card p-8 flex flex-col gap-4">
         <div className="flex flex-col gap-1">
-          <h4 className="text-xl font-bold font-headline text-on-surface">Freelance Web Developer</h4>
-          <p className="text-primary font-mono text-sm tracking-wide">Freelance · Remote</p>
+          <h4 className="text-xl font-medium font-headline text-on-surface">Freelance Web Developer</h4>
+          <p className="text-on-surface font-mono text-sm tracking-wide">Freelance · Remote</p>
           <p className="text-on-surface-variant font-mono text-xs tracking-widest uppercase">Jul 2017 – Present · 8 yrs</p>
         </div>
         <p className="text-on-surface-variant leading-relaxed">
@@ -22,7 +21,7 @@ const workHistory = [
         </p>
         <div className="flex flex-wrap gap-2 mt-2">
           {['WordPress', 'Performance Optimization', 'Core Web Vitals', 'SEO', 'PHP', 'JavaScript'].map((t) => (
-            <span key={t} className="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-xs font-mono">{t}</span>
+            <span key={t} className="mono-tag px-3 py-1 text-xs font-mono">{t}</span>
           ))}
         </div>
       </div>
@@ -31,10 +30,10 @@ const workHistory = [
   {
     title: "2022 — 2023",
     content: (
-      <div className="bg-surface-container-high rounded-xl p-8 flex flex-col gap-4">
+      <div className="mono-card p-8 flex flex-col gap-4">
         <div className="flex flex-col gap-1">
-          <h4 className="text-xl font-bold font-headline text-on-surface">Frontend Developer</h4>
-          <p className="text-primary font-mono text-sm tracking-wide">PERFECTUS · Full-time · Hybrid</p>
+          <h4 className="text-xl font-medium font-headline text-on-surface">Frontend Developer</h4>
+          <p className="text-on-surface font-mono text-sm tracking-wide">PERFECTUS · Full-time · Hybrid</p>
           <p className="text-on-surface-variant font-mono text-xs tracking-widest uppercase">Sep 2022 – Oct 2023 · 1 yr 2 mos · Colombo, Sri Lanka</p>
         </div>
         <p className="text-on-surface-variant leading-relaxed">
@@ -45,7 +44,7 @@ const workHistory = [
         </p>
         <div className="flex flex-wrap gap-2 mt-2">
           {['React.js', 'API Integration', 'Blockchain', 'Frontend Architecture', 'TypeScript'].map((t) => (
-            <span key={t} className="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-xs font-mono">{t}</span>
+            <span key={t} className="mono-tag px-3 py-1 text-xs font-mono">{t}</span>
           ))}
         </div>
       </div>
@@ -54,10 +53,10 @@ const workHistory = [
   {
     title: "2021 — 2022",
     content: (
-      <div className="bg-surface-container-high rounded-xl p-8 flex flex-col gap-4">
+      <div className="mono-card p-8 flex flex-col gap-4">
         <div className="flex flex-col gap-1">
-          <h4 className="text-xl font-bold font-headline text-on-surface">WordPress Developer</h4>
-          <p className="text-primary font-mono text-sm tracking-wide">Marlin Communications · Contract · Remote</p>
+          <h4 className="text-xl font-medium font-headline text-on-surface">WordPress Developer</h4>
+          <p className="text-on-surface font-mono text-sm tracking-wide">Marlin Communications · Contract · Remote</p>
           <p className="text-on-surface-variant font-mono text-xs tracking-widest uppercase">Jun 2021 – Jul 2022 · 1 yr 2 mos</p>
         </div>
         <p className="text-on-surface-variant leading-relaxed">
@@ -68,7 +67,7 @@ const workHistory = [
         </p>
         <div className="flex flex-wrap gap-2 mt-2">
           {['WordPress', 'Figma to WordPress', 'GiveWP', 'BrowserStack', 'Jira', 'PHP'].map((t) => (
-            <span key={t} className="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-xs font-mono">{t}</span>
+            <span key={t} className="mono-tag px-3 py-1 text-xs font-mono">{t}</span>
           ))}
         </div>
       </div>
@@ -77,10 +76,10 @@ const workHistory = [
   {
     title: "2016 — 2017",
     content: (
-      <div className="bg-surface-container-high rounded-xl p-8 flex flex-col gap-4">
+      <div className="mono-card p-8 flex flex-col gap-4">
         <div className="flex flex-col gap-1">
-          <h4 className="text-xl font-bold font-headline text-on-surface">WordPress Web Designer</h4>
-          <p className="text-primary font-mono text-sm tracking-wide">National Youth Services Council · Full-time · On-site</p>
+          <h4 className="text-xl font-medium font-headline text-on-surface">WordPress Web Designer</h4>
+          <p className="text-on-surface font-mono text-sm tracking-wide">National Youth Services Council · Full-time · On-site</p>
           <p className="text-on-surface-variant font-mono text-xs tracking-widest uppercase">Dec 2016 – Dec 2017 · 1 yr 1 mo · Colombo, Sri Lanka</p>
         </div>
         <p className="text-on-surface-variant leading-relaxed">
@@ -88,7 +87,7 @@ const workHistory = [
         </p>
         <div className="flex flex-wrap gap-2 mt-2">
           {['WordPress', 'Web Design', 'Content Management', 'Social Media', 'CSS'].map((t) => (
-            <span key={t} className="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-xs font-mono">{t}</span>
+            <span key={t} className="mono-tag px-3 py-1 text-xs font-mono">{t}</span>
           ))}
         </div>
       </div>
@@ -101,18 +100,12 @@ export default function AboutPage() {
     <>
       <Nav />
       <main className="relative">
-        <Spotlight />
-
         {/* ── Page Hero ── */}
-        <section className="relative pt-40 pb-20 px-12 max-w-[1440px] mx-auto text-center min-h-[90vh] flex flex-col justify-center">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary-container/10 rounded-full blur-[120px] pointer-events-none" />
+        <section className="relative pt-40 pb-20 px-6 md:px-12 max-w-[1440px] mx-auto text-center min-h-[90vh] flex flex-col justify-center">
           <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container/20 border border-secondary/20 mb-8">
-              <span className="w-2 h-2 rounded-full bg-secondary inline-block" />
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-secondary">Engineer Profile</span>
-            </div>
-            <h1 className="text-5xl md:text-8xl font-extrabold tracking-tighter leading-[0.9] mb-8 font-headline text-on-surface">
-              9+ Years of<br /><span className="bg-[linear-gradient(to_left,#29EAC4,#4284DB)] bg-clip-text text-transparent">Architectural Rigor.</span>
+            <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-on-surface-variant mb-8">Engineer Profile</div>
+            <h1 className="text-5xl md:text-8xl font-medium leading-[0.9] mb-8 font-headline text-on-surface">
+              9+ years of<br />architectural rigor.
             </h1>
             <p className="text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
               Building performant, scalable systems at the intersection of WordPress and modern headless ecosystems.
@@ -121,7 +114,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── Three Pillars ── */}
-        <section className="py-32 px-12 max-w-[1440px] mx-auto">
+        <section className="py-32 px-6 md:px-12 max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
@@ -140,9 +133,9 @@ export default function AboutPage() {
                 desc: 'Distributed thinking baked into every project — from DB schema to CDN strategy.',
               },
             ].map((pillar) => (
-              <div key={pillar.title} className="bg-surface-container-high rounded-xl p-10 flex flex-col gap-6">
-                <span className="material-symbols-outlined text-primary text-4xl">{pillar.icon}</span>
-                <h3 className="text-2xl font-bold font-headline">{pillar.title}</h3>
+              <div key={pillar.title} className="mono-card p-10 flex flex-col gap-6">
+                <span className="material-symbols-outlined text-on-surface text-4xl">{pillar.icon}</span>
+                <h3 className="text-2xl font-medium font-headline">{pillar.title}</h3>
                 <p className="text-on-surface-variant leading-relaxed">{pillar.desc}</p>
               </div>
             ))}
@@ -150,19 +143,17 @@ export default function AboutPage() {
         </section>
 
         {/* ── Story Section ── */}
-        <section className="pt-32 pb-16 px-12 max-w-[1440px] mx-auto border-t border-outline-variant/10">
+        <section className="pt-32 pb-16 px-6 md:px-12 max-w-[1440px] mx-auto border-t border-outline-variant/60">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
             {/* Left: profile photo */}
             <div className="md:col-span-5 relative group">
-              <div className="w-[400px] h-[400px] max-w-full rounded-full overflow-hidden bg-surface-container-high relative shadow-2xl mx-auto">
+              <div className="w-[400px] h-[400px] max-w-full overflow-hidden bg-surface-container relative border border-outline-variant mx-auto">
                 <img
                   className="w-full h-full object-cover opacity-80 transition-all duration-700"
                   src="/images/dp-pasindu-oshadha.jpeg"
                   alt="Pasindu Oshadha — Senior Developer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-surface/60 via-transparent to-transparent" />
               </div>
-              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-primary/10 rounded-full blur-2xl -z-10 group-hover:bg-primary/20 transition-colors" />
             </div>
 
             {/* Right: story + stats */}
@@ -187,8 +178,8 @@ export default function AboutPage() {
                   { value: '50+', label: 'Projects Delivered' },
                   { value: '3', label: 'Continents Served' },
                 ].map((stat) => (
-                  <div key={stat.label} className="bg-surface-container-high rounded-xl p-6 text-center">
-                    <div className="text-4xl font-extrabold font-headline text-primary mb-2">{stat.value}</div>
+                  <div key={stat.label} className="mono-card p-6 text-center">
+                    <div className="text-4xl font-medium font-headline text-on-surface mb-2">{stat.value}</div>
                     <div className="text-xs font-mono uppercase tracking-widest text-on-surface-variant">{stat.label}</div>
                   </div>
                 ))}
@@ -198,12 +189,10 @@ export default function AboutPage() {
         </section>
 
         {/* ── Work History ── */}
-        <section className="pt-16 pb-8 px-12 max-w-[1440px] mx-auto border-t border-outline-variant/10">
+        <section className="pt-16 pb-8 px-6 md:px-12 max-w-[1440px] mx-auto border-t border-outline-variant/60">
           <div className="mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6">
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-primary">Career</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold font-headline tracking-tight">Work History</h2>
+            <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-on-surface-variant mb-6">Career</div>
+            <h2 className="text-4xl md:text-5xl font-medium font-headline">Work History</h2>
             <p className="text-on-surface-variant mt-4 text-lg max-w-xl leading-relaxed">
               A decade of building, shipping, and scaling across agencies, startups, and enterprise teams.
             </p>
@@ -212,12 +201,10 @@ export default function AboutPage() {
         </section>
 
         {/* ── Technical Skills ── */}
-        <section className="pt-16 pb-16 max-w-[800px] mx-auto border-t border-outline-variant/10">
+        <section className="pt-16 pb-16 max-w-[800px] mx-auto border-t border-outline-variant/60">
           <div className="mb-16 px-6 text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6">
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-primary">Expertise</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold font-headline tracking-tight">Engineering Stack</h2>
+            <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-on-surface-variant mb-6">Expertise</div>
+            <h2 className="text-4xl md:text-5xl font-medium font-headline">Engineering Stack</h2>
           </div>
 
           <div className="flex flex-col gap-8">
@@ -236,8 +223,8 @@ export default function AboutPage() {
                     { name: 'MySQL',      slug: 'mysql',      color: '4479A1' },
                     { name: 'Node.js',    slug: 'nodedotjs',  color: '339933' },
                   ]).map(({ name, slug, color }, i) => (
-                    <div key={i} className="flex items-center gap-3 px-5 py-3 bg-surface-container-high rounded-xl border border-outline-variant/20 shrink-0">
-                      <div className="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+                    <div key={i} className="flex items-center gap-3 px-5 py-3 bg-surface-container-lowest border border-outline-variant shrink-0">
+                      <div className="w-8 h-8 bg-surface-container flex items-center justify-center shrink-0">
                         <img src={`https://cdn.simpleicons.org/${slug}/${color}`} alt={name} className="w-5 h-5 object-contain" />
                       </div>
                       <span className="text-sm font-mono text-on-surface whitespace-nowrap">{name}</span>
@@ -262,8 +249,8 @@ export default function AboutPage() {
                     { name: 'Figma',          slug: 'figma',         color: 'F24E1E' },
                     { name: 'Git',            slug: 'git',           color: 'F05032' },
                   ]).map(({ name, slug, color }, i) => (
-                    <div key={i} className="flex items-center gap-3 px-5 py-3 bg-surface-container-high rounded-xl border border-outline-variant/20 shrink-0">
-                      <div className="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+                    <div key={i} className="flex items-center gap-3 px-5 py-3 bg-surface-container-lowest border border-outline-variant shrink-0">
+                      <div className="w-8 h-8 bg-surface-container flex items-center justify-center shrink-0">
                         <img src={`https://cdn.simpleicons.org/${slug}/${color}`} alt={name} className="w-5 h-5 object-contain" />
                       </div>
                       <span className="text-sm font-mono text-on-surface whitespace-nowrap">{name}</span>
@@ -276,26 +263,19 @@ export default function AboutPage() {
         </section>
 
         {/* ── CTA ── */}
-        <section className="py-32 px-12">
-          <div className="max-w-[1440px] mx-auto bg-gradient-to-br from-surface-container-high to-surface rounded-3xl p-12 md:p-24 text-center border border-outline-variant/10 relative overflow-hidden">
-            <div className="absolute -bottom-24 -right-24 w-[400px] h-[400px] bg-secondary-container/10 rounded-full blur-[100px] pointer-events-none" />
-            <h2 className="text-5xl md:text-7xl font-extrabold font-headline tracking-tighter mb-8 leading-[1]">
+        <section className="py-32 px-6 md:px-12">
+          <div className="max-w-[1440px] mx-auto mono-section p-12 md:p-24 text-center relative overflow-hidden">
+            <h2 className="text-5xl md:text-7xl font-medium font-headline mb-8 leading-[1]">
               Ready to collaborate?
             </h2>
             <p className="text-xl text-on-surface-variant max-w-2xl mx-auto mb-12">
               Currently accepting select projects for Q3 and Q4. Let&apos;s build something that performs as well as it looks.
             </p>
             <div className="flex flex-col md:flex-row justify-center gap-6">
-              <Link
-                href="/contact"
-                className="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-10 py-5 rounded-lg text-xl font-bold hover:scale-105 transition-transform duration-200"
-              >
+              <Link href="/contact" className="mono-button-primary px-10 py-5 text-xl font-bold">
                 Start a Project
               </Link>
-              <Link
-                href="/case-studies"
-                className="bg-surface-container-high/40 border border-outline-variant/20 backdrop-blur-md text-on-surface px-10 py-5 rounded-lg text-xl font-semibold hover:bg-surface-container-high transition-colors"
-              >
+              <Link href="/case-studies" className="mono-button-secondary px-10 py-5 text-xl font-semibold">
                 View Case Studies
               </Link>
             </div>

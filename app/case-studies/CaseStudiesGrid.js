@@ -15,7 +15,7 @@ export default function CaseStudiesGrid({ caseStudies }) {
     : caseStudies.filter((c) => c.category === activeFilter)
 
   return (
-    <section className="py-16 px-12 max-w-[1440px] mx-auto">
+    <section className="py-16 px-6 md:px-12 max-w-[1440px] mx-auto">
 
       {/* Filter bar */}
       <div className="flex flex-wrap gap-3 mb-16">
@@ -23,10 +23,10 @@ export default function CaseStudiesGrid({ caseStudies }) {
           <button
             key={f}
             onClick={() => setActiveFilter(f)}
-            className={`px-5 py-2 rounded-full text-sm font-mono transition-all duration-200 ${
+            className={`px-5 py-2 text-sm font-mono border transition-all duration-200 ${
               activeFilter === f
-                ? 'bg-primary/20 text-primary border border-primary/30'
-                : 'bg-surface-container text-on-surface-variant border border-transparent hover:border-outline-variant/30'
+                ? 'bg-surface text-on-surface border-on-surface'
+                : 'bg-surface-container-lowest text-on-surface-variant border-outline-variant hover:text-on-surface'
             }`}
           >
             {f}
@@ -47,7 +47,7 @@ export default function CaseStudiesGrid({ caseStudies }) {
           <Link
             key={item._id}
             href={`/case-studies/${item.slug}`}
-            className="bg-surface-container-high rounded-xl overflow-hidden flex flex-col group hover:bg-surface-container-highest transition-colors duration-200"
+            className="mono-card overflow-hidden flex flex-col group"
           >
             {/* Cover image */}
             <div className="aspect-video overflow-hidden bg-surface-container-lowest relative">
@@ -69,10 +69,10 @@ export default function CaseStudiesGrid({ caseStudies }) {
             {/* Content */}
             <div className="p-8 flex flex-col flex-1">
               <div className="flex items-center justify-between mb-4">
-                <span className="px-3 py-1 rounded-full bg-primary/20 text-primary text-[10px] font-mono font-bold uppercase tracking-widest">
+                <span className="mono-tag px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-widest">
                   {item.category}
                 </span>
-                <span className="material-symbols-outlined text-on-surface/40 group-hover:text-primary transition-colors">
+                <span className="material-symbols-outlined text-on-surface/40 group-hover:text-on-surface transition-colors">
                   north_east
                 </span>
               </div>
@@ -90,7 +90,7 @@ export default function CaseStudiesGrid({ caseStudies }) {
               {item.tags?.length > 0 && (
                 <div className="flex flex-wrap gap-2 mb-6">
                   {item.tags.map((tech) => (
-                    <span key={tech} className="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-xs font-mono">
+                    <span key={tech} className="mono-tag px-3 py-1 text-xs font-mono">
                       {tech}
                     </span>
                   ))}
@@ -99,15 +99,15 @@ export default function CaseStudiesGrid({ caseStudies }) {
 
               {/* Metrics */}
               {item.results?.length > 0 && (
-                <div className="mt-auto pt-6 border-t border-outline-variant/10 flex flex-wrap gap-6">
+                <div className="mt-auto pt-6 border-t border-outline-variant/60 flex flex-wrap gap-6">
                   {item.results.slice(0, 3).map((r, i) => (
                     <div key={i} className="flex items-center gap-2">
                       {r.icon && (
-                        <span className="material-symbols-outlined text-primary text-lg">{r.icon}</span>
+                        <span className="material-symbols-outlined text-on-surface text-lg">{r.icon}</span>
                       )}
                       <div>
                         <p className="font-mono text-[10px] uppercase tracking-wider text-on-surface-variant">{r.label}</p>
-                        {r.value && <p className="font-mono text-xs text-primary font-bold">{r.value}</p>}
+                        {r.value && <p className="font-mono text-xs text-on-surface font-bold">{r.value}</p>}
                       </div>
                     </div>
                   ))}
