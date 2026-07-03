@@ -1,13 +1,15 @@
 import { Resend } from 'resend'
+import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
+import type { ContactRequestPayload, ContactResponse } from '../../../types/contact'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-export async function POST(req) {
-  const { name, email, projectType, budget, brief } = await req.json()
+export async function POST(req: NextRequest) {
+  const { name, email, projectType, budget, brief } = (await req.json()) as ContactRequestPayload
 
   if (!name || !email || !brief) {
-    return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+    return NextResponse.json<ContactResponse>({ error: 'Missing required fields' }, { status: 400 })
   }
 
   const { error } = await resend.emails.send({
@@ -28,8 +30,8 @@ export async function POST(req) {
   })
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    return NextResponse.json<ContactResponse>({ error: error.message }, { status: 500 })
   }
 
-  return NextResponse.json({ success: true })
+  return NextResponse.json<ContactResponse>({ success: true })
 }

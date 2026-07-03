@@ -5,14 +5,15 @@ import Footer from '../../components/Footer'
 import { client } from '../../sanity/lib/client'
 import { PROJECTS_QUERY } from '../../sanity/lib/queries'
 import { urlFor } from '../../sanity/lib/image'
+import type { Project } from '../../types/content'
 
-const STATUS_STYLES = {
+const STATUS_STYLES: Record<string, string> = {
   completed: 'mono-tag bg-surface text-on-surface border-on-surface',
   'in-progress': 'mono-tag bg-surface-container-low text-on-surface border-outline',
   archived: 'mono-tag bg-surface-container text-on-surface-variant border-outline-variant',
 }
 
-const CATEGORY_ICONS = {
+const CATEGORY_ICONS: Record<string, string> = {
   'WordPress': 'web',
   'WooCommerce': 'shopping_cart',
   'Headless / Next.js': 'bolt',
@@ -25,9 +26,9 @@ const CATEGORY_ICONS = {
 export const revalidate = 60
 
 export default async function ProjectsPage() {
-  const projects = await client.fetch(PROJECTS_QUERY)
-  const websites = projects.filter(p => p.projectType === 'website' || !p.projectType)
-  const repos = projects.filter(p => p.projectType === 'repo')
+  const projects = await client.fetch<Project[]>(PROJECTS_QUERY)
+  const websites = projects.filter((p: Project) => p.projectType === 'website' || !p.projectType)
+  const repos = projects.filter((p: Project) => p.projectType === 'repo')
 
   return (
     <>
@@ -114,9 +115,9 @@ export default async function ProjectsPage() {
                     <h3 className="text-xl font-medium font-headline mb-2 text-on-surface">{project.title}</h3>
                     <p className="text-on-surface-variant text-sm leading-relaxed mb-4 flex-1">{project.description}</p>
 
-                    {project.tags?.length > 0 && (
+                    {project.tags && project.tags.length > 0 && (
                       <div className="flex flex-wrap gap-2 mb-6">
-                        {project.tags.map((tech) => (
+                        {project.tags.map((tech: string) => (
                           <span key={tech} className="mono-tag px-3 py-1 text-xs font-mono">
                             {tech}
                           </span>
@@ -174,7 +175,7 @@ export default async function ProjectsPage() {
                   {/* Icon block */}
                   <div className="shrink-0 w-14 h-14 border border-outline-variant bg-surface-container-lowest flex items-center justify-center">
                     <span className="material-symbols-outlined text-2xl text-on-surface">
-                      {CATEGORY_ICONS[project.category] || 'code'}
+                      {(project.category ? CATEGORY_ICONS[project.category] : undefined) || 'code'}
                     </span>
                   </div>
 
@@ -194,9 +195,9 @@ export default async function ProjectsPage() {
                       )}
                     </div>
                     <p className="text-on-surface-variant text-sm leading-relaxed mb-4">{project.description}</p>
-                    {project.tags?.length > 0 && (
+                    {project.tags && project.tags.length > 0 && (
                       <div className="flex flex-wrap gap-2">
-                        {project.tags.map((tech) => (
+                        {project.tags.map((tech: string) => (
                           <span key={tech} className="mono-tag px-3 py-1 text-xs font-mono">
                             {tech}
                           </span>

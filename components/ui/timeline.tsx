@@ -1,10 +1,20 @@
 "use client";
 import { useScroll, useTransform, motion } from "motion/react";
+import type { ReactNode } from "react";
 import React, { useEffect, useRef, useState } from "react";
 
-export const Timeline = ({ data }) => {
-  const ref = useRef(null);
-  const containerRef = useRef(null);
+interface TimelineItem {
+  title: string
+  content: ReactNode
+}
+
+interface TimelineProps {
+  data: TimelineItem[]
+}
+
+export const Timeline = ({ data }: TimelineProps) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
@@ -25,7 +35,7 @@ export const Timeline = ({ data }) => {
   return (
     <div className="w-full font-body" ref={containerRef}>
       <div ref={ref} className="relative max-w-[1440px] mx-auto pb-4">
-        {data.map((item, index) => (
+        {data.map((item: TimelineItem, index: number) => (
           <div
             key={index}
             className="flex justify-start pt-10 md:pt-24 md:gap-10"

@@ -6,6 +6,7 @@ import ExpertiseGrid from '../components/ExpertiseGrid'
 import { client } from '../sanity/lib/client'
 import { HOME_PROJECTS_QUERY, TESTIMONIALS_QUERY } from '../sanity/lib/queries'
 import { urlFor } from '../sanity/lib/image'
+import type { Project, Testimonial } from '../types/content'
 
 const LOGO_DEV_TOKEN = 'pk_QKUwWgUrRJaFB1Xp1hUjJg'
 
@@ -26,8 +27,8 @@ export const revalidate = 60
 
 export default async function Home() {
   const [projects, testimonials] = await Promise.all([
-    client.fetch(HOME_PROJECTS_QUERY),
-    client.fetch(TESTIMONIALS_QUERY),
+    client.fetch<Project[]>(HOME_PROJECTS_QUERY),
+    client.fetch<Testimonial[]>(TESTIMONIALS_QUERY),
   ])
 
   return (
@@ -67,11 +68,12 @@ export default async function Home() {
           <div className="animate-marquee flex items-center gap-16 w-max opacity-40 hover:opacity-100 transition-opacity duration-700">
             {[...techs, ...techs].map(({ domain, label }, i) => (
               <div key={i} className="flex items-center gap-3 text-on-surface shrink-0">
-                <img
+                <Image
                   src={`https://img.logo.dev/${domain}?token=${LOGO_DEV_TOKEN}&size=40&format=png`}
                   alt={label}
                   width={32}
                   height={32}
+                  unoptimized
                   className="w-8 h-8 shrink-0 object-contain rounded-lg grayscale"
                 />
                 <span className="font-headline font-normal text-xl">{label}</span>
@@ -104,10 +106,12 @@ export default async function Home() {
               <div className="flex items-center justify-start shrink-0">
                 <div className="relative group w-40 h-40 md:w-48 md:h-48 shrink-0">
                   <div className="w-full h-full overflow-hidden bg-surface-container border border-outline-variant">
-                    <img
-                      className="w-full h-full object-cover transition-all duration-700"
+                    <Image
                       src="/images/dp-pasindu-oshadha.jpeg"
                       alt="Pasindu Oshadha — Senior Developer"
+                      width={192}
+                      height={192}
+                      className="w-full h-full object-cover transition-all duration-700"
                     />
                   </div>
                 </div>
@@ -194,9 +198,9 @@ export default async function Home() {
                     </div>
                     <h3 className="text-2xl font-medium font-headline mb-4">{project.title}</h3>
                     <p className="text-on-surface-variant text-sm leading-relaxed mb-8">{project.description}</p>
-                    {project.tags?.length > 0 && (
+                    {project.tags && project.tags.length > 0 && (
                       <div className="mt-auto pt-6 border-t border-outline-variant/60 flex flex-wrap gap-2">
-                        {project.tags.slice(0, 3).map((tag) => (
+                        {project.tags.slice(0, 3).map((tag: string) => (
                           <span key={tag} className="mono-tag px-2 py-1 text-[10px] font-mono">
                             {tag}
                           </span>
@@ -228,10 +232,12 @@ export default async function Home() {
                     <div className="flex items-center gap-4">
                       {t.avatar ? (
                         <div className="w-12 h-12 overflow-hidden shrink-0 border border-outline-variant bg-surface-container">
-                          <img
-                            className="w-full h-full object-cover"
+                          <Image
                             src={urlFor(t.avatar).width(96).height(96).url()}
                             alt={t.clientName}
+                            width={48}
+                            height={48}
+                            className="w-full h-full object-cover"
                           />
                         </div>
                       ) : (

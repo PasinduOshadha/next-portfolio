@@ -1,23 +1,31 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { PortableText } from '@portabletext/react'
+import type { PortableTextReactComponents } from '@portabletext/react'
+import type { ReactNode } from 'react'
 import Nav from '../../../components/Nav'
 import Footer from '../../../components/Footer'
 import { client } from '../../../sanity/lib/client'
 import { POST_QUERY, POST_SLUGS_QUERY } from '../../../sanity/lib/queries'
 import { urlFor } from '../../../sanity/lib/image'
+import type { Post, SanityImage, SlugParam } from '../../../types/content'
+
+interface BlogPostPageProps {
+  params: Promise<SlugParam>
+}
 
 export const revalidate = 60
 
 export async function generateStaticParams() {
-  const slugs = await client.fetch(POST_SLUGS_QUERY)
-  return slugs.map((s) => ({ slug: s.slug }))
+  const slugs = await client.fetch<SlugParam[]>(POST_SLUGS_QUERY)
+  return slugs.map((s: SlugParam) => ({ slug: s.slug }))
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params
-  const post = await client.fetch(POST_QUERY, { slug })
+  const post = await client.fetch<Post | null>(POST_QUERY, { slug })
   if (!post) return {}
   return {
     title: post.title,
@@ -25,9 +33,9 @@ export async function generateMetadata({ params }) {
   }
 }
 
-const ptComponents = {
+const ptComponents: Partial<PortableTextReactComponents> = {
   types: {
-    image: ({ value }) => value?.asset ? (
+    image: ({ value }: { value: SanityImage }) => value?.asset ? (
       <figure className="my-10 overflow-hidden border border-outline-variant">
         <Image
           src={urlFor(value).width(1200).url()}
@@ -43,7 +51,7 @@ const ptComponents = {
         )}
       </figure>
     ) : null,
-    code: ({ value }) => (
+    code: ({ value }: { value: { code?: string; language?: string } }) => (
       <div className="my-8 bg-surface-container-lowest border border-outline-variant overflow-hidden">
         <div className="flex items-center gap-2 px-6 py-3 border-b border-outline-variant/60">
           <div className="w-3 h-3 bg-surface-container-highest" />
@@ -62,29 +70,29 @@ const ptComponents = {
     ),
   },
   block: {
-    h2: ({ children }) => (
+    h2: ({ children }: { children?: ReactNode }) => (
       <h2 className="text-3xl font-medium font-headline mt-12 mb-4 text-on-surface">{children}</h2>
     ),
-    h3: ({ children }) => (
+    h3: ({ children }: { children?: ReactNode }) => (
       <h3 className="text-2xl font-medium font-headline mt-8 mb-3 text-on-surface">{children}</h3>
     ),
-    normal: ({ children }) => (
+    normal: ({ children }: { children?: ReactNode }) => (
       <p className="text-on-surface-variant leading-relaxed mb-6 text-[1.0625rem]">{children}</p>
     ),
-    blockquote: ({ children }) => (
+    blockquote: ({ children }: { children?: ReactNode }) => (
       <blockquote className="border-l-2 border-on-surface pl-6 my-8 text-on-surface-variant italic text-lg">
         {children}
       </blockquote>
     ),
   },
   list: {
-    bullet: ({ children }) => <ul className="list-none space-y-2 mb-6">{children}</ul>,
-    number: ({ children }) => (
+    bullet: ({ children }: { children?: ReactNode }) => <ul className="list-none space-y-2 mb-6">{children}</ul>,
+    number: ({ children }: { children?: ReactNode }) => (
       <ol className="list-decimal list-inside space-y-2 mb-6 text-on-surface-variant">{children}</ol>
     ),
   },
   listItem: {
-    bullet: ({ children }) => (
+    bullet: ({ children }: { children?: ReactNode }) => (
       <li className="flex items-start gap-2 text-on-surface-variant">
         <span className="material-symbols-outlined text-on-surface text-sm mt-1">arrow_forward</span>
         <span>{children}</span>
@@ -92,13 +100,13 @@ const ptComponents = {
     ),
   },
   marks: {
-    strong: ({ children }) => <strong className="text-on-surface font-semibold">{children}</strong>,
-    code: ({ children }) => (
+    strong: ({ children }: { children?: ReactNode }) => <strong className="text-on-surface font-semibold">{children}</strong>,
+    code: ({ children }: { children?: ReactNode }) => (
       <code className="bg-surface-container-lowest text-on-surface font-mono text-sm px-1.5 py-0.5">
         {children}
       </code>
     ),
-    link: ({ value, children }) => (
+    link: ({ value, children }: { value?: { href?: string }; children?: ReactNode }) => (
       <a
         href={value?.href}
         target="_blank"
@@ -111,9 +119,9 @@ const ptComponents = {
   },
 }
 
-export default async function BlogPostPage({ params }) {
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
-  const post = await client.fetch(POST_QUERY, { slug })
+  const post = await client.fetch<Post | null>(POST_QUERY, { slug })
 
   if (!post) notFound()
 
@@ -179,21 +187,21 @@ export default async function BlogPostPage({ params }) {
 
             {/* Article */}
             <article className="lg:col-span-3">
-              {post.body?.length > 0 && (
-                <PortableText value={post.body} components={ptComponents} />
+              {post.body && post.body.length > 0 && (
+                <PortableText value={post.body as never} components={ptComponents} />
               )}
             </article>
 
             {/* Sidebar */}
             <aside className="space-y-6">
               {/* Tags */}
-              {post.tags?.length > 0 && (
+              {post.tags && post.tags.length > 0 && (
                 <div className="mono-card p-6 sticky top-24">
                   <p className="text-[10px] font-mono uppercase tracking-widest text-on-surface-variant mb-4">
                     Tags
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
+                    {post.tags.map((tag: string) => (
                       <span key={tag} className="mono-tag px-3 py-1 text-xs font-mono">
                         {tag}
                       </span>

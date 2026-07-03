@@ -7,6 +7,7 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
     "sanity": "sanity",
     "sanity:dev": "sanity dev"
   },
@@ -33,9 +34,14 @@
     "tsparticles-engine": "^2.12.0"
   },
   "devDependencies": {
+    "@types/node": "^26.1.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@types/styled-components": "^5.1.36",
     "eslint": "^9",
     "eslint-config-next": "latest",
     "postcss": "^8",
-    "tailwindcss": "^4.2.2"
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3"
   }
 }

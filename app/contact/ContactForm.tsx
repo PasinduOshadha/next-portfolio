@@ -1,16 +1,28 @@
 'use client'
 
+import type { ChangeEvent, FormEvent } from 'react'
 import { useState } from 'react'
+import type { ContactFormStatus, ContactFormValues, ContactResponse } from '../../types/contact'
+
+const DEFAULT_FORM_VALUES: ContactFormValues = {
+  name: '',
+  email: '',
+  projectType: '',
+  budget: '',
+  brief: '',
+}
 
 export default function ContactForm() {
-  const [form, setForm] = useState({ name: '', email: '', projectType: '', budget: '', brief: '' })
-  const [status, setStatus] = useState('idle') // idle | loading | success | error
+  const [form, setForm] = useState<ContactFormValues>(DEFAULT_FORM_VALUES)
+  const [status, setStatus] = useState<ContactFormStatus>('idle')
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+  ) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setStatus('loading')
     try {
@@ -19,9 +31,10 @@ export default function ContactForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       })
-      if (!res.ok) throw new Error()
+      const payload = (await res.json()) as ContactResponse
+      if (!res.ok || payload.error) throw new Error(payload.error)
       setStatus('success')
-      setForm({ name: '', email: '', projectType: '', budget: '', brief: '' })
+      setForm(DEFAULT_FORM_VALUES)
     } catch {
       setStatus('error')
     }
