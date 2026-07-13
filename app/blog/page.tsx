@@ -6,6 +6,23 @@ import { client } from '../../sanity/lib/client'
 import { POSTS_QUERY } from '../../sanity/lib/queries'
 import { urlFor } from '../../sanity/lib/image'
 import type { Post } from '../../types/content'
+import JsonLd from '../../components/JsonLd'
+import { blogSchema, breadcrumbSchema } from '../../lib/schema'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Blog — WordPress, Next.js & Performance Engineering | Pasindu Oshadha',
+  description:
+    'Articles on WordPress engineering, headless Next.js, Core Web Vitals, technical SEO, and building fast, maintainable websites.',
+  alternates: {
+    canonical: '/blog',
+  },
+  openGraph: {
+    title: 'Blog — WordPress, Next.js & Performance Engineering | Pasindu Oshadha',
+    description: 'Articles on WordPress engineering, headless Next.js, Core Web Vitals, technical SEO, and building fast, maintainable websites.',
+    url: '/blog',
+  },
+}
 
 export const revalidate = 60
 
@@ -17,6 +34,13 @@ export default async function BlogPage() {
 
   return (
     <>
+      <JsonLd data={blogSchema(posts)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Blog', path: '/blog' },
+        ])}
+      />
       <Nav />
       <main className="relative">
 

@@ -1,6 +1,23 @@
 import Link from 'next/link'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
+import JsonLd from '../../components/JsonLd'
+import { servicesSchema, breadcrumbSchema } from '../../lib/schema'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Services — WordPress Architecture, Headless Next.js, Performance & SEO',
+  description:
+    'Web development services: enterprise WordPress architecture, headless Next.js delivery, Core Web Vitals & technical SEO engineering, custom plugins and API integrations.',
+  alternates: {
+    canonical: '/services',
+  },
+  openGraph: {
+    title: 'Services — WordPress Architecture, Headless Next.js, Performance & SEO',
+    description: 'Web development services: enterprise WordPress architecture, headless Next.js delivery, Core Web Vitals & technical SEO engineering, custom plugins and API integrations.',
+    url: '/services',
+  },
+}
 
 const services = [
   {
@@ -70,6 +87,13 @@ const engagements = [
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd data={servicesSchema(services)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Services', path: '/services' },
+        ])}
+      />
       <Nav />
       <main className="relative">
 

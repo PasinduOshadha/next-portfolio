@@ -7,6 +7,16 @@ import { client } from '../sanity/lib/client'
 import { HOME_PROJECTS_QUERY, TESTIMONIALS_QUERY } from '../sanity/lib/queries'
 import { urlFor } from '../sanity/lib/image'
 import type { Project, Testimonial } from '../types/content'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    url: '/',
+  },
+}
 
 const LOGO_DEV_TOKEN = 'pk_QKUwWgUrRJaFB1Xp1hUjJg'
 

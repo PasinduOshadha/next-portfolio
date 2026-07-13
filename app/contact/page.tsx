@@ -1,10 +1,34 @@
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ContactForm from './ContactForm'
+import JsonLd from '../../components/JsonLd'
+import { contactPageSchema, breadcrumbSchema } from '../../lib/schema'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Contact — Hire a Senior WordPress & Next.js Developer | Pasindu Oshadha',
+  description:
+    'Start a project or discuss a role. Accepting selective freelance projects and remote engineering roles across AU, EU, and US timezones.',
+  alternates: {
+    canonical: '/contact',
+  },
+  openGraph: {
+    title: 'Contact — Hire a Senior WordPress & Next.js Developer | Pasindu Oshadha',
+    description: 'Start a project or discuss a role. Accepting selective freelance projects and remote engineering roles across AU, EU, and US timezones.',
+    url: '/contact',
+  },
+}
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={contactPageSchema()} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Contact', path: '/contact' },
+        ])}
+      />
       <Nav />
       <main className="relative">
 

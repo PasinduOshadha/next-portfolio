@@ -3,6 +3,23 @@ import Link from 'next/link'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import { Timeline } from '../../components/ui/timeline'
+import JsonLd from '../../components/JsonLd'
+import { profilePageSchema, breadcrumbSchema } from '../../lib/schema'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'About — Pasindu Oshadha | Senior WordPress & Next.js Developer',
+  description:
+    '9+ years of architectural rigor. Senior web developer bridging enterprise WordPress and headless Next.js — performance-first, maintainable, scalable systems.',
+  alternates: {
+    canonical: '/about',
+  },
+  openGraph: {
+    title: 'About — Pasindu Oshadha | Senior WordPress & Next.js Developer',
+    description: '9+ years of architectural rigor. Senior web developer bridging enterprise WordPress and headless Next.js — performance-first, maintainable, scalable systems.',
+    url: '/about',
+  },
+}
 
 const workHistory = [
   {
@@ -99,6 +116,13 @@ const workHistory = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={profilePageSchema()} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'About', path: '/about' },
+        ])}
+      />
       <Nav />
       <main className="relative">
         {/* ── Page Hero ── */}

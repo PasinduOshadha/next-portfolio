@@ -197,3 +197,17 @@
 @theme {
   --animate-marquee: marquee 30s linear infinite;
 }
+
+/* ── Print (resume PDF export) ── */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #111111 !important;
+  }
+  .mono-card,
+  .mono-section,
+  .mono-tag {
+    background-color: transparent !important;
+    color: inherit !important;
+  }
+}
