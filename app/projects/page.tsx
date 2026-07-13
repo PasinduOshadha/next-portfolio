@@ -6,6 +6,23 @@ import { client } from '../../sanity/lib/client'
 import { PROJECTS_QUERY } from '../../sanity/lib/queries'
 import { urlFor } from '../../sanity/lib/image'
 import type { Project } from '../../types/content'
+import JsonLd from '../../components/JsonLd'
+import { collectionPageSchema, breadcrumbSchema, projectItems } from '../../lib/schema'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Projects — WordPress, Next.js & Open Source Work | Pasindu Oshadha',
+  description:
+    'Selected web development projects: WordPress builds, headless Next.js applications, WooCommerce, API integrations, and open-source work.',
+  alternates: {
+    canonical: '/projects',
+  },
+  openGraph: {
+    title: 'Projects — WordPress, Next.js & Open Source Work | Pasindu Oshadha',
+    description: 'Selected web development projects: WordPress builds, headless Next.js applications, WooCommerce, API integrations, and open-source work.',
+    url: '/projects',
+  },
+}
 
 const STATUS_STYLES: Record<string, string> = {
   completed: 'mono-tag bg-surface text-on-surface border-on-surface',
@@ -32,6 +49,20 @@ export default async function ProjectsPage() {
 
   return (
     <>
+      <JsonLd
+        data={collectionPageSchema({
+          name: 'Projects',
+          path: '/projects',
+          description: 'Selected web development projects by Pasindu Oshadha.',
+          items: projectItems(projects),
+        })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Projects', path: '/projects' },
+        ])}
+      />
       <Nav />
       <main className="relative">
 

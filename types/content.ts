@@ -47,6 +47,7 @@ export interface Testimonial {
 
 export interface Post {
   _id: string
+  _updatedAt?: string
   title: string
   slug: string
   excerpt?: string
@@ -61,6 +62,7 @@ export interface Post {
 
 export interface CaseStudy {
   _id: string
+  _updatedAt?: string
   title: string
   slug: string
   client?: string

@@ -20,6 +20,7 @@ export const CASE_STUDIES_QUERY = `
 export const CASE_STUDY_QUERY = `
   *[_type == "caseStudy" && slug.current == $slug][0] {
     _id,
+    _updatedAt,
     title,
     "slug": slug.current,
     client,
@@ -130,6 +131,7 @@ export const POSTS_QUERY = `
 export const POST_QUERY = `
   *[_type == "post" && slug.current == $slug][0] {
     _id,
+    _updatedAt,
     title,
     "slug": slug.current,
     excerpt,

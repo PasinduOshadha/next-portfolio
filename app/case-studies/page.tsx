@@ -5,6 +5,23 @@ import CaseStudiesGrid from './CaseStudiesGrid'
 import { client } from '../../sanity/lib/client'
 import { CASE_STUDIES_QUERY } from '../../sanity/lib/queries'
 import type { CaseStudy } from '../../types/content'
+import JsonLd from '../../components/JsonLd'
+import { collectionPageSchema, breadcrumbSchema, BASE_URL } from '../../lib/schema'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Case Studies — Client Work & Measurable Results | Pasindu Oshadha',
+  description:
+    'In-depth case studies of client projects: the challenge, the engineering solution, and measurable results in performance, SEO, and business outcomes.',
+  alternates: {
+    canonical: '/case-studies',
+  },
+  openGraph: {
+    title: 'Case Studies — Client Work & Measurable Results | Pasindu Oshadha',
+    description: 'In-depth case studies of client projects: the challenge, the engineering solution, and measurable results in performance, SEO, and business outcomes.',
+    url: '/case-studies',
+  },
+}
 
 export const revalidate = 60
 
@@ -13,6 +30,24 @@ export default async function CaseStudiesPage() {
 
   return (
     <>
+      <JsonLd
+        data={collectionPageSchema({
+          name: 'Case Studies',
+          path: '/case-studies',
+          description: 'Client work and project case studies by Pasindu Oshadha.',
+          items: caseStudies.map((cs: CaseStudy) => ({
+            name: cs.title,
+            url: `${BASE_URL}/case-studies/${cs.slug}`,
+            description: cs.excerpt,
+          })),
+        })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Case Studies', path: '/case-studies' },
+        ])}
+      />
       <Nav />
       <main className="relative">
 

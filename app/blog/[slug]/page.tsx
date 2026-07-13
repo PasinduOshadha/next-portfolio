@@ -11,6 +11,8 @@ import { client } from '../../../sanity/lib/client'
 import { POST_QUERY, POST_SLUGS_QUERY } from '../../../sanity/lib/queries'
 import { urlFor } from '../../../sanity/lib/image'
 import type { Post, SanityImage, SlugParam } from '../../../types/content'
+import JsonLd from '../../../components/JsonLd'
+import { blogPostingSchema, breadcrumbSchema } from '../../../lib/schema'
 
 interface BlogPostPageProps {
   params: Promise<SlugParam>
@@ -30,6 +32,16 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url: `/blog/${post.slug}`,
+      type: 'article',
+      ...(post.publishedAt && { publishedTime: post.publishedAt }),
+    },
   }
 }
 
@@ -127,6 +139,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <>
+      <JsonLd data={blogPostingSchema(post)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Blog', path: '/blog' },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ])}
+      />
       <Nav />
       <main className="relative">
 

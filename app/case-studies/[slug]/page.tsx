@@ -11,6 +11,8 @@ import { client } from '../../../sanity/lib/client'
 import { CASE_STUDY_QUERY, CASE_STUDY_SLUGS_QUERY } from '../../../sanity/lib/queries'
 import { urlFor } from '../../../sanity/lib/image'
 import type { CaseStudy, CaseStudyResult, SanityImage, SlugParam } from '../../../types/content'
+import JsonLd from '../../../components/JsonLd'
+import { caseStudyArticleSchema, breadcrumbSchema } from '../../../lib/schema'
 
 interface CaseStudyPageProps {
   params: Promise<SlugParam>
@@ -30,6 +32,16 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
   return {
     title: `${study.title} — Case Study`,
     description: study.excerpt,
+    alternates: {
+      canonical: `/case-studies/${study.slug}`,
+    },
+    openGraph: {
+      title: `${study.title} — Case Study`,
+      description: study.excerpt,
+      url: `/case-studies/${study.slug}`,
+      type: 'article',
+      ...(study.publishedAt && { publishedTime: study.publishedAt }),
+    },
   }
 }
 
@@ -95,6 +107,14 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
   return (
     <>
+      <JsonLd data={caseStudyArticleSchema(study)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Case Studies', path: '/case-studies' },
+          { name: study.title, path: `/case-studies/${study.slug}` },
+        ])}
+      />
       <Nav />
       <main className="relative">
 
