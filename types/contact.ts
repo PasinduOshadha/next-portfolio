@@ -8,7 +8,9 @@ export interface ContactFormValues {
 
 export type ContactFormStatus = 'idle' | 'loading' | 'success' | 'error'
 
-export interface ContactRequestPayload extends ContactFormValues {}
+export interface ContactRequestPayload extends ContactFormValues {
+  turnstileToken: string
+}
 
 export interface ContactResponse {
   success?: boolean

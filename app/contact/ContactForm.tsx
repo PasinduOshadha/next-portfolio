@@ -3,6 +3,7 @@
 import type { ChangeEvent, FormEvent } from 'react'
 import { useState } from 'react'
 import type { ContactFormStatus, ContactFormValues, ContactResponse } from '../../types/contact'
+import TurnstileWidget from './TurnstileWidget'
 
 const DEFAULT_FORM_VALUES: ContactFormValues = {
   name: '',
@@ -15,6 +16,12 @@ const DEFAULT_FORM_VALUES: ContactFormValues = {
 export default function ContactForm() {
   const [form, setForm] = useState<ContactFormValues>(DEFAULT_FORM_VALUES)
   const [status, setStatus] = useState<ContactFormStatus>('idle')
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
+  const [turnstileResetCounter, setTurnstileResetCounter] = useState(0)
+
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ''
+  const isTurnstileConfigured = turnstileSiteKey.length > 0
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
@@ -24,19 +31,43 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setErrorMessage(null)
+
+    if (!isTurnstileConfigured) {
+      setStatus('error')
+      setErrorMessage('Turnstile is not configured yet. Add NEXT_PUBLIC_TURNSTILE_SITE_KEY to enable the form.')
+      return
+    }
+
+    if (!turnstileToken) {
+      setStatus('error')
+      setErrorMessage('Please complete the verification challenge before sending your message.')
+      return
+    }
+
     setStatus('loading')
+
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          turnstileToken,
+        }),
       })
+
       const payload = (await res.json()) as ContactResponse
       if (!res.ok || payload.error) throw new Error(payload.error)
       setStatus('success')
       setForm(DEFAULT_FORM_VALUES)
-    } catch {
+      setTurnstileToken(null)
+      setTurnstileResetCounter((value) => value + 1)
+    } catch (error) {
       setStatus('error')
+      setErrorMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again or email directly.')
+      setTurnstileToken(null)
+      setTurnstileResetCounter((value) => value + 1)
     }
   }
 
@@ -57,6 +88,7 @@ export default function ContactForm() {
             onChange={handleChange}
             placeholder="Jane Smith"
             className={inputClass}
+            required
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -68,6 +100,7 @@ export default function ContactForm() {
             onChange={handleChange}
             placeholder="jane@company.com"
             className={inputClass}
+            required
           />
         </div>
       </div>
@@ -113,7 +146,23 @@ export default function ContactForm() {
           rows={4}
           placeholder="Describe your project, goals, and any technical constraints..."
           className={inputClass}
+          required
         />
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <label className="text-xs font-mono uppercase tracking-widest text-on-surface-variant">Verification</label>
+        {isTurnstileConfigured ? (
+          <TurnstileWidget
+            siteKey={turnstileSiteKey}
+            onTokenChange={setTurnstileToken}
+            resetCounter={turnstileResetCounter}
+          />
+        ) : (
+          <p className="text-sm font-mono text-on-surface-variant">
+            Turnstile site key missing. Add `NEXT_PUBLIC_TURNSTILE_SITE_KEY` to enable submissions.
+          </p>
+        )}
       </div>
 
       {status === 'success' && (
@@ -123,13 +172,13 @@ export default function ContactForm() {
       )}
       {status === 'error' && (
         <p className="text-sm font-mono text-on-surface bg-surface-container px-4 py-3 border border-on-surface">
-          Something went wrong. Please try again or email directly.
+          {errorMessage ?? 'Something went wrong. Please try again or email directly.'}
         </p>
       )}
 
       <button
         type="submit"
-        disabled={status === 'loading'}
+        disabled={status === 'loading' || !isTurnstileConfigured}
         className="w-full mono-button-primary py-4 text-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {status === 'loading' ? 'Sending...' : 'Initialize Inquiry'}
