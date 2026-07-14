@@ -30,6 +30,7 @@ export default function Nav() {
   }, [open])
 
   return (
+    <>
     <nav className="fixed top-0 w-full z-50 border-b border-outline-variant/80 bg-white/90 backdrop-blur-xl">
       <div className="flex justify-between items-center px-6 md:px-12 py-5 max-w-[1440px] mx-auto gap-6">
         <Link href="/" className="text-xl font-light text-on-surface font-headline">
@@ -73,8 +74,10 @@ export default function Nav() {
           <span className="material-symbols-outlined text-3xl leading-none">menu</span>
         </button>
       </div>
+    </nav>
 
-      {/* Mobile drawer */}
+    {/* Mobile drawer — sibling of nav: backdrop-filter on nav would make it the
+        containing block for fixed positioning and clip the drawer to nav height */}
       <div
         className={`md:hidden fixed inset-0 z-50 transition-opacity duration-200 ${
           open ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -89,7 +92,7 @@ export default function Nav() {
 
         {/* Panel */}
         <div
-          className={`absolute top-0 right-0 h-full w-[300px] max-w-[85vw] bg-white shadow-xl flex flex-col transition-transform duration-250 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+          className={`absolute top-0 right-0 h-full w-[300px] max-w-[85vw] bg-white shadow-xl flex flex-col transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
             open ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
@@ -135,6 +138,6 @@ export default function Nav() {
           </div>
         </div>
       </div>
-    </nav>
+    </>
   )
 }
