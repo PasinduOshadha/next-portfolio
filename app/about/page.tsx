@@ -130,7 +130,7 @@ export default function AboutPage() {
         <section className="relative pt-40 pb-20 px-6 md:px-12 max-w-[1440px] mx-auto text-center min-h-[90vh] flex flex-col justify-center">
           <div className="relative z-10">
             <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-on-surface-variant mb-8">Engineer Profile</div>
-            <StaggerTitle as="h1" trigger="load" className="text-5xl md:text-8xl font-medium leading-[0.9] mb-8 font-headline text-on-surface">
+            <StaggerTitle as="h1" trigger="load" className="text-4xl sm:text-5xl md:text-7xl font-medium leading-[0.9] mb-8 font-headline text-on-surface">
               9+ years of<br />architectural rigor.
             </StaggerTitle>
             <p className="text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">

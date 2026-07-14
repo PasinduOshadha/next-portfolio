@@ -103,7 +103,7 @@ export default function ServicesPage() {
             <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-on-surface-variant mb-8">
               Services
             </div>
-            <StaggerTitle as="h1" trigger="load" className="text-6xl md:text-8xl font-medium leading-[0.92] mb-8 font-headline text-on-surface">
+            <StaggerTitle as="h1" trigger="load" className="text-4xl sm:text-5xl md:text-7xl font-medium leading-[0.92] mb-8 font-headline text-on-surface">
               Engineering services for content-heavy, performance-sensitive products.
             </StaggerTitle>
             <p className="text-xl md:text-2xl text-on-surface-variant max-w-3xl leading-relaxed mb-12">

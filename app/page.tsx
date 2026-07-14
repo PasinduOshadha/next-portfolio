@@ -59,7 +59,7 @@ export default async function Home() {
             <StaggerTitle
               as="h1"
               trigger="load"
-              className="text-6xl md:text-8xl font-medium leading-[0.9] mb-8 font-headline text-on-surface"
+              className="text-4xl sm:text-5xl md:text-7xl font-medium leading-[0.9] mb-8 font-headline text-on-surface"
             >
               Performance-led.<br />
               SEO-conscious.<br />

@@ -179,7 +179,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               )}
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-medium leading-[1.05] mb-6 font-headline text-on-surface">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-medium leading-[1.05] mb-6 font-headline text-on-surface">
               {post.title}
             </h1>
             <p className="text-xl text-on-surface-variant leading-relaxed">{post.excerpt}</p>

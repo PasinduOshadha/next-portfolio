@@ -36,7 +36,7 @@ export default function ContactPage() {
         {/* ── Page Hero ── */}
         <section className="relative py-32 px-6 md:px-12 max-w-[1440px] mx-auto text-center pt-40">
           <div className="relative z-10">
-            <StaggerTitle as="h1" trigger="load" className="text-6xl md:text-8xl font-medium leading-[0.9] mb-8 font-headline text-on-surface">
+            <StaggerTitle as="h1" trigger="load" className="text-4xl sm:text-5xl md:text-7xl font-medium leading-[0.9] mb-8 font-headline text-on-surface">
               Let&apos;s Build Something High-Performance.
             </StaggerTitle>
             <p className="text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">

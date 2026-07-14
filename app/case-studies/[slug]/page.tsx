@@ -140,7 +140,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               )}
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-medium leading-[0.9] mb-6 font-headline text-on-surface">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium leading-[0.9] mb-6 font-headline text-on-surface">
               {study.title}
             </h1>
             <p className="text-xl text-on-surface-variant max-w-2xl leading-relaxed">{study.excerpt}</p>

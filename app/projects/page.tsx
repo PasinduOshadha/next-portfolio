@@ -73,7 +73,7 @@ export default async function ProjectsPage() {
             <span className="font-mono text-on-surface-variant text-[11px] tracking-[0.22em] uppercase mb-4 block">
               Open Source &amp; Side Projects
             </span>
-            <StaggerTitle as="h1" trigger="load" className="text-6xl md:text-8xl font-medium leading-[0.9] mb-8 font-headline text-on-surface">
+            <StaggerTitle as="h1" trigger="load" className="text-4xl sm:text-5xl md:text-7xl font-medium leading-[0.9] mb-8 font-headline text-on-surface">
               Things I&apos;ve Built.
             </StaggerTitle>
             <p className="text-xl md:text-2xl text-on-surface-variant max-w-2xl leading-relaxed">
