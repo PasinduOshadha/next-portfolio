@@ -4,6 +4,7 @@ import Footer from '../../components/Footer'
 import JsonLd from '../../components/JsonLd'
 import { servicesSchema, breadcrumbSchema } from '../../lib/schema'
 import type { Metadata } from 'next'
+import StaggerTitle from '../../components/animations/StaggerTitle'
 
 export const metadata: Metadata = {
   title: 'Services — WordPress Architecture, Headless Next.js, Performance & SEO',
@@ -102,9 +103,9 @@ export default function ServicesPage() {
             <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-on-surface-variant mb-8">
               Services
             </div>
-            <h1 className="text-6xl md:text-8xl font-medium leading-[0.92] mb-8 font-headline text-on-surface">
+            <StaggerTitle as="h1" trigger="load" className="text-4xl sm:text-5xl md:text-7xl font-medium leading-[0.92] mb-8 font-headline text-on-surface">
               Engineering services for content-heavy, performance-sensitive products.
-            </h1>
+            </StaggerTitle>
             <p className="text-xl md:text-2xl text-on-surface-variant max-w-3xl leading-relaxed mb-12">
               I work across WordPress architecture, headless Next.js delivery, performance engineering, and custom integrations for teams that need durable technical decisions instead of flashy short-term builds.
             </p>

@@ -9,6 +9,7 @@ import type { Project } from '../../types/content'
 import JsonLd from '../../components/JsonLd'
 import { collectionPageSchema, breadcrumbSchema, projectItems } from '../../lib/schema'
 import type { Metadata } from 'next'
+import StaggerTitle from '../../components/animations/StaggerTitle'
 
 export const metadata: Metadata = {
   title: 'Projects — WordPress, Next.js & Open Source Work | Pasindu Oshadha',
@@ -72,9 +73,9 @@ export default async function ProjectsPage() {
             <span className="font-mono text-on-surface-variant text-[11px] tracking-[0.22em] uppercase mb-4 block">
               Open Source &amp; Side Projects
             </span>
-            <h1 className="text-6xl md:text-8xl font-medium leading-[0.9] mb-8 font-headline text-on-surface">
+            <StaggerTitle as="h1" trigger="load" className="text-4xl sm:text-5xl md:text-7xl font-medium leading-[0.9] mb-8 font-headline text-on-surface">
               Things I&apos;ve Built.
-            </h1>
+            </StaggerTitle>
             <p className="text-xl md:text-2xl text-on-surface-variant max-w-2xl leading-relaxed">
               Personal projects, experiments, and open-source contributions from my engineering lab.
             </p>

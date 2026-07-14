@@ -3,6 +3,7 @@ import Script from 'next/script'
 import type { ReactNode } from 'react'
 import './globals.css'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { ViewTransitions } from 'next-view-transitions'
 import JsonLd from '../components/JsonLd'
 import { rootGraph } from '../lib/schema'
 
@@ -22,7 +23,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <ViewTransitions>
+      <html lang="en">
       <body>
         <JsonLd data={rootGraph()} />
         <Script
@@ -40,6 +42,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {children}
         <SpeedInsights />
       </body>
-    </html>
+      </html>
+    </ViewTransitions>
   )
 }

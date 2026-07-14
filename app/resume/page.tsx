@@ -130,7 +130,7 @@ export default function ResumePage() {
               <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-on-surface-variant mb-6 print:text-neutral-500">
                 Resume
               </div>
-              <h1 className="text-5xl md:text-7xl font-medium leading-[0.95] font-headline text-on-surface print:text-black print:text-4xl">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium leading-[0.95] font-headline text-on-surface print:text-black print:text-4xl">
                 Pasindu Oshadha
               </h1>
               <p className="text-xl text-on-surface-variant mt-4 leading-relaxed print:text-neutral-700">

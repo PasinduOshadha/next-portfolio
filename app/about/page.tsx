@@ -6,6 +6,7 @@ import { Timeline } from '../../components/ui/timeline'
 import JsonLd from '../../components/JsonLd'
 import { profilePageSchema, breadcrumbSchema } from '../../lib/schema'
 import type { Metadata } from 'next'
+import StaggerTitle from '../../components/animations/StaggerTitle'
 
 export const metadata: Metadata = {
   title: 'About — Pasindu Oshadha | Senior WordPress & Next.js Developer',
@@ -129,9 +130,9 @@ export default function AboutPage() {
         <section className="relative pt-40 pb-20 px-6 md:px-12 max-w-[1440px] mx-auto text-center min-h-[90vh] flex flex-col justify-center">
           <div className="relative z-10">
             <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-on-surface-variant mb-8">Engineer Profile</div>
-            <h1 className="text-5xl md:text-8xl font-medium leading-[0.9] mb-8 font-headline text-on-surface">
+            <StaggerTitle as="h1" trigger="load" className="text-4xl sm:text-5xl md:text-7xl font-medium leading-[0.9] mb-8 font-headline text-on-surface">
               9+ years of<br />architectural rigor.
-            </h1>
+            </StaggerTitle>
             <p className="text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
               Building performant, scalable systems at the intersection of WordPress and modern headless ecosystems.
             </p>

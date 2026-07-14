@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import Image from 'next/image'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
@@ -7,6 +7,8 @@ import { client } from '../sanity/lib/client'
 import { HOME_PROJECTS_QUERY, TESTIMONIALS_QUERY } from '../sanity/lib/queries'
 import { urlFor } from '../sanity/lib/image'
 import type { Project, Testimonial } from '../types/content'
+import HeroParticles from '../components/animations/HeroParticlesLazy'
+import StaggerTitle from '../components/animations/StaggerTitle'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -49,15 +51,20 @@ export default async function Home() {
 
         {/* ── Hero ── */}
         <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-28 max-w-[1440px] mx-auto overflow-hidden">
+          <HeroParticles />
           <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
             <span className="font-mono text-on-surface-variant text-[11px] tracking-[0.22em] uppercase mb-4 block">
               Senior WordPress &amp; Next.js Developer
             </span>
-            <h1 className="text-6xl md:text-8xl font-medium leading-[0.9] mb-8 font-headline text-on-surface">
+            <StaggerTitle
+              as="h1"
+              trigger="load"
+              className="text-4xl sm:text-5xl md:text-7xl font-medium leading-[0.9] mb-8 font-headline text-on-surface"
+            >
               Performance-led.<br />
               SEO-conscious.<br />
               Scalable solutions.
-            </h1>
+            </StaggerTitle>
             <p className="text-xl md:text-2xl text-on-surface-variant max-w-2xl mb-12 leading-relaxed text-center font-['IBM_Plex_Mono']">
               <span className="bg-[#FDCA0F] text-black px-1.5">9+ years</span> of engineering experience, specializing in <span className="bg-[#FDCA0F] text-black px-1.5">high-end WordPress</span> architecture
               and <span className="bg-[#FDCA0F] text-black px-1.5">headless Next.js</span> solutions for international clients.
@@ -97,9 +104,9 @@ export default async function Home() {
           <div className="max-w-[1440px] mx-auto relative z-10">
             <div className="mb-20">
               <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-on-surface-variant mb-4 block">Core Capabilities</span>
-              <h2 className="text-4xl md:text-5xl font-medium font-headline mb-4 text-on-surface">
+              <StaggerTitle as="h2" className="text-4xl md:text-5xl font-medium font-headline mb-4 text-on-surface">
                 Architectural expertise for content-heavy products.
-              </h2>
+              </StaggerTitle>
               <p className="text-on-surface-variant text-lg max-w-xl">
                 Engineering high-throughput applications with a focus on modern web standards.
               </p>
@@ -129,9 +136,9 @@ export default async function Home() {
 
               <div className="flex-1">
                 <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-on-surface-variant mb-8">Engineer Profile</div>
-                <h2 className="text-5xl md:text-6xl font-medium font-headline leading-tight text-on-surface">
+                <StaggerTitle as="h2" className="text-5xl md:text-6xl font-medium font-headline leading-tight text-on-surface">
                   9+ years of engineering rigor.
-                </h2>
+                </StaggerTitle>
               </div>
             </div>
 
@@ -163,9 +170,9 @@ export default async function Home() {
           <div className="max-w-[1440px] mx-auto">
             <div className="flex justify-between items-end mb-20">
               <div>
-                <h2 className="text-4xl md:text-5xl font-medium font-headline mb-4 text-on-surface">
+                <StaggerTitle as="h2" className="text-4xl md:text-5xl font-medium font-headline mb-4 text-on-surface">
                   Selected Projects
-                </h2>
+                </StaggerTitle>
                 <p className="text-on-surface-variant text-lg">Real work. Real results.</p>
               </div>
               <Link href="/projects" className="inline-flex items-center gap-2 text-on-surface font-semibold border-b border-on-surface">
@@ -229,7 +236,7 @@ export default async function Home() {
           <section className="py-32 px-6 md:px-12 max-w-[1440px] mx-auto overflow-hidden">
             <div className="flex flex-col md:flex-row gap-24 items-start">
               <div className="w-full md:w-1/3">
-                <h2 className="text-4xl font-medium font-headline mb-8 text-on-surface">What Partners Say</h2>
+                <StaggerTitle as="h2" className="text-4xl font-medium font-headline mb-8 text-on-surface">What Partners Say</StaggerTitle>
                 <p className="text-on-surface-variant text-lg leading-relaxed">
                   Collaborating with global agencies and engineering teams to deliver world-class digital experiences.
                 </p>
@@ -273,9 +280,9 @@ export default async function Home() {
         {/* ── Final CTA ── */}
         <section className="py-32 px-6 md:px-12">
           <div className="max-w-[1440px] mx-auto mono-section p-12 md:p-24 text-center relative overflow-hidden">
-            <h2 className="text-5xl md:text-7xl font-medium font-headline mb-8 leading-[1] text-on-surface">
+            <StaggerTitle as="h2" className="text-5xl md:text-7xl font-medium font-headline mb-8 leading-[1] text-on-surface">
               Ready to scale your digital architecture?
-            </h2>
+            </StaggerTitle>
             <p className="text-xl text-on-surface-variant max-w-2xl mx-auto mb-12">
               Currently accepting select projects for Q3 and Q4. Let&apos;s build something that performs as well as it looks.
             </p>
