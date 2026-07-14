@@ -1,10 +1,11 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import { usePathname } from 'next/navigation'
 
 const navLinks = [
   { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
   { href: '/projects', label: 'Work' },
   { href: '/case-studies', label: 'Case Studies' },
   { href: '/services', label: 'Services' },

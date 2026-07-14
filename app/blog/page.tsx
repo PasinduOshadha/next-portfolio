@@ -9,6 +9,7 @@ import type { Post } from '../../types/content'
 import JsonLd from '../../components/JsonLd'
 import { blogSchema, breadcrumbSchema } from '../../lib/schema'
 import type { Metadata } from 'next'
+import StaggerTitle from '../../components/animations/StaggerTitle'
 
 export const metadata: Metadata = {
   title: 'Blog — WordPress, Next.js & Performance Engineering | Pasindu Oshadha',
@@ -50,9 +51,9 @@ export default async function BlogPage() {
             <span className="font-mono text-on-surface-variant text-[11px] tracking-[0.22em] uppercase mb-4 block">
               Writing
             </span>
-            <h1 className="text-6xl md:text-8xl font-medium leading-[0.9] mb-8 font-headline text-on-surface">
+            <StaggerTitle as="h1" trigger="load" className="text-6xl md:text-8xl font-medium leading-[0.9] mb-8 font-headline text-on-surface">
               The Engineering<br />Journal.
-            </h1>
+            </StaggerTitle>
             <p className="text-xl md:text-2xl text-on-surface-variant max-w-2xl leading-relaxed">
               Deep dives on WordPress architecture, Next.js performance, and the craft of building for scale.
             </p>
