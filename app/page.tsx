@@ -70,8 +70,8 @@ export default async function Home() {
               and <span className="bg-[#FDCA0F] text-black px-1.5">headless Next.js</span> solutions for international clients.
             </p>
             <div className="flex flex-wrap gap-6 justify-center">
-              <Link href="/case-studies" className="mono-button-primary px-8 py-4 text-lg font-bold">
-                View Case Studies
+              <Link href="/projects" className="mono-button-primary px-8 py-4 text-lg font-bold">
+                View My Work
               </Link>
               <Link href="/contact" className="mono-button-secondary px-8 py-4 text-lg font-semibold">
                 Hire Me
